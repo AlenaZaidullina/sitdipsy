@@ -1,0 +1,51 @@
+/*  Стили гамбургер кнопки  */
+.hamburger {
+    display: none; /* По умолчанию скрыта */
+    cursor: pointer; /* Курсор-указатель при наведении */
+    position: relative; /* Относительное позиционирование */
+    width: 30px; /* Ширина кнопки */
+    height: 20px; /* Высота кнопки */
+    z-index: 1001; /* Уровень поверх других элементов */
+}
+
+.hamburger-line {
+    position: absolute; /* Абсолютное позиционирование внутри кнопки */
+    width: 100%; /* Полная ширина кнопки */
+    height: 2px; /* Толщина линии */
+    background-color: var(--text-color-light); /* Цвет из переменных */
+    transition: all var(--transition); /* Плавные анимации */
+}
+
+.hamburger-line:first-child {
+    top: 0; /* Верхняя линия */
+}
+
+.hamburger-line:last-child {
+    top: 10px; /* Нижняя линия со смещением */
+    width: 70%; /* Короче верхней на 30% */
+}
+
+.hamburger.active .hamburger-line:first-child {
+    transform: rotate(45deg) translate(5px, 5px); /* Поворот в крестик */
+}
+
+.hamburger.active .hamburger-line:last-child {
+    transform: rotate(-45deg) translate(5px, -5px); /* Поворот в крестик */
+    width: 100%; /* Полная ширина */
+}
+
+@media (max-width: 1068px) {
+    .hamburger {
+        display: block; /* Показываем кнопку */
+        position: fixed; /* Фиксированное позиционирование */
+        z-index: 1001; /* Поверх всех элементов */
+        right: 40px; /* Отступ справа */
+        top: 20px; /* Отступ сверху */
+    }
+}
+
+@media (min-width: 1069px) {
+    .hamburger {
+        display: none; /* Скрываем кнопку */
+    }
+}

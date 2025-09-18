@@ -1,0 +1,38 @@
+{% load static %}
+<section class="education-section" id="education" data-section="education">
+    <div class="container">
+        <h2 class="section-title">Образование и профессиональная подготовка</h2>
+
+        <div class="timeline">
+            <div class="timeline-line"></div>
+
+            {% for item in education_items %}
+            <div class="timeline-item">
+                <div class="timeline-year">{{ item.year }}</div>
+                <div class="timeline-content">
+                    <ul>
+                        {% for achievement in item.achievements.all %}
+                        {% if achievement.is_active %}
+                        <li class="diploma-link"
+                            data-diploma-urls="{% for img in achievement.diploma_images.all %}{{ img.image.url }}{% if not forloop.last %},{% endif %}{% endfor %}">
+                            {{ achievement.title }}
+                            {% if achievement.description %}
+                            <br><small>{{ achievement.description }}</small>
+                            {% endif %}
+                            {% if achievement.diploma_images.exists %}
+                            <svg class="link-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5D2510">
+                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                                <polyline points="15 3 21 3 21 9"></polyline>
+                                <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                            {% endif %}
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

@@ -1,0 +1,26 @@
+/*  Настройки шрифтов   */
+body, p, .profile-menu{
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 300;
+}
+
+
+h1, h2, h3, .heading {
+    font-family: 'Inter', serif;
+    letter-spacing: 0.5px;
+}
+
+h2, h3, .heading {
+    margin: 2.5rem 0 3.5rem 0; /*сверху справа снизу слева*/
+    padding: 1rem 0 1rem 0;
+    font-weight: normal;
+    color: var(--text-color);
+}
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    text-align: center;
+}

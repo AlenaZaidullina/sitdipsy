@@ -1,0 +1,36 @@
+{% load static %}
+<div class="full-width-container">
+    <h2>Этапы работы</h2>
+
+    <div class="hint-label"><p>Нажмите на круг, чтобы раскрыть подробности</p></div>
+
+    <!-- SVG для десктопов (от 768px) -->
+    <svg class="steps-svg desktop-line" viewBox="0 0 1166 100" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <!-- Пунктирная линия-->
+        <path class="dashed-line" d="M0 98C0.99947 98-11.9999 98 103 123" stroke="#FF5010" fill="none"/>
+
+        <!-- Основная сплошная линия -->
+        <path class="stright-line" d="M103 123C218 148 312.999 50 466.999 50C621 50 642.999 98 805.999 98C969 98 1072 50 1166 50" fill="none" id="desktop-wave-line"/>
+
+        <!-- Круги  добавлены через JS -->
+    </svg>
+
+    <!-- SVG для мобильных (до 768px) -->
+    <svg class="steps-svg mobile-line" viewBox="0 0 522 348" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <!-- Основная линия -->
+        <path class="mobile-main-line" d="M144.892 1.23766C144.892 1.23766 327.901 1.23766 424.951 1.23766C522 1.23765 576.501 137.128 436.472 163.622C296.443 190.116 144.892 139.692 59.8108 180.716C-25.2703 221.74 -15.0811 305.497 70 332.845C155.081 360.194 296 342 371 332.845" stroke="#FF5010" fill="none" id="mobile-wave-line"/>
+
+        <!-- Вторая линия с прозрачностью -->
+        <path class="mobile-secondary-line" d="M144.892 1.23766C144.892 1.23766 327.901 1.23766 424.951 1.23766C522 1.23765 576.501 137.128 436.472 163.622C296.443 190.116 144.892 139.692 59.8108 180.716C-25.2703 221.74 -15.0811 305.497 70 332.845C155.081 360.194 296 342 371 332.845" stroke="#FF5010" stroke-opacity="0.2" fill="none"/>
+
+        <!-- Круги добавлены через JS -->
+    </svg>
+
+    <!-- Блок для отображения описания -->
+    <div class="description-container" id="description-container">
+        <div class="description-box" id="description-box">
+            <h3 id="description-title"></h3>
+            <p id="description-text"></p>
+        </div>
+    </div>
+</div>

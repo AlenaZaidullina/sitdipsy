@@ -1,0 +1,29 @@
+/*  Базовые стили   */
+@import 'base/_reset.css';
+@import 'base/_variables.css';
+@import 'base/_fonts.css';
+@import 'base/_layout.css';
+@import 'base/_menu.css';
+@import 'base/_hamburger.css';
+@import 'base/_social.css';
+@import 'base/_footer.css';
+@import 'base/_popup.css';
+
+/*  Компоненты, кнопки, карточки    */
+@import 'components/_buttons.css';
+
+
+
+/*   Стили секций   */
+@import 'sections/_about_me.css';
+@import 'sections/_appointment.css';
+@import 'sections/_cbt_therapy.css';
+@import 'sections/_cta_contact.css';
+@import 'sections/_education.css';
+@import 'sections/_hero.css';
+@import 'sections/_process_timeline.css';
+@import 'sections/_requests.css';
+@import 'sections/_rules.css';
+@import 'sections/_therapy_format_section.css';
+
+

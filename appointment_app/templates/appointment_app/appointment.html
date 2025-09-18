@@ -1,0 +1,130 @@
+<section id="appointment" data-section="appointment">
+    <form class="consultation-form" id="consultation-form" method="post" autocomplete="off">
+        {% csrf_token %}
+        <h2>Запись на консультацию</h2>
+
+        <div class="form-group">
+            <input type="text" class="form-input" id="fullname" name="full_name" placeholder=" " required autocomplete="name">
+            <label for="fullname" class="form-label">ФИО</label>
+        </div>
+
+        <div class="form-group">
+            <input
+                type="tel"
+                class="form-input"
+                id="phone"
+                name="phone"
+                placeholder=" "
+                required
+                autocomplete="tel"
+                pattern="^(\+7|7|8)\d{10}$"
+                minlength="11"
+                maxlength="12"
+                title="Введите российский номер телефона (11 цифр, начинается с 7, 8 или +7)"
+            >
+            <label for="phone" class="form-label">Номер телефона</label>
+            <small class="form-hint" style="display: none; color: #666; font-size: 0.8rem;">Пример: +79161234567 или 89161234567</small>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label select-label">Тип консультации</label>
+            <select id="consultation-type" name="consultation_type" class="form-input" required>
+                <option value="" disabled selected>Выберите тип консультации</option>
+                <option value="first">Первичная консультация (90 мин)</option>
+                <option value="follow">Повторная консультация (60 мин)</option>
+            </select>
+        </div>
+
+        <div id="payment-notice" style="display: none; margin-bottom: 1.5rem;">
+            <p style="color: #CC7C72; font-family: 'Inter Tight', sans-serif;">
+                Первичная консультация оплачивается за 24 часа до приема
+            </p>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-input" id="selected-date" name="selected_date" placeholder=" " readonly>
+            <label for="selected-date" class="form-label">Выберите дату и время записи</label>
+
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button type="button" class="month-nav" id="prev-month">&lt;</button>
+                    <span id="current-month-year">МАРТ / 2025</span>
+                    <button type="button" class="month-nav" id="next-month">&gt;</button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div>ПН</div>
+                    <div>ВТ</div>
+                    <div>СР</div>
+                    <div>ЧТ</div>
+                    <div>ПТ</div>
+                    <div>СБ</div>
+                    <div>ВС</div>
+                </div>
+                <div class="calendar-days" id="calendar-days">
+                    <!-- Days will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="consent-section">
+            {% if not request.session.pd_consent_given %}
+                <div class="consent-required">
+                    <p style="color: #dc3545; margin-bottom: 1rem;">
+                        ⚠️ В соответствии с новым законодательством, для записи на консультацию
+                        необходимо предоставить согласие на обработку персональных данных
+                    </p>
+                    <a href="{% url 'consent_form' %}" class="btn btn-consent">
+                        Дать согласие на обработку персональных данных
+                    </a>
+                </div>
+            {% else %}
+                <div class="consent-given">
+                    <p style="color: #28a745; margin-bottom: 1rem;">
+                        ✅ Согласие на обработку персональных данных предоставлено
+                        ({{ request.session.pd_consent_name }}, {{ request.session.pd_consent_time|date:'d.m.Y H:i' }})
+                    </p>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" class="checkbox-input" name="pd_consent" required checked>
+                            <span>Подтверждаю предоставленное ранее согласие на обработку персональных данных</span>
+                        </label>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+
+        <div class="checkbox-group">
+            <label class="checkbox-label">
+                <input type="checkbox" class="checkbox-input" name="age_confirm" required>
+                Мне уже есть 18 лет
+            </label>
+        </div>
+
+
+        <input name="honeypot" type="hidden" tabindex="-1" autocomplete="off">
+
+        <button type="submit" class="button">Записаться</button>
+
+        <div class="telegram-option">
+            или напишите мне в Telegram:
+            <a href="https://t.me/sitdipsy" class="telegram-link" target="_blank" rel="noopener noreferrer">
+                <svg class="telegram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.135-.26.24-.534.24l.213-3.053 5.56-5.022c.22-.198-.034-.309-.335-.108l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                </svg>
+                Написать в Telegram
+            </a>
+        </div>
+    </form>
+
+    <!-- Модальное окно выбора времени -->
+    <div id="time-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Выберите время для <span id="selected-day"></span></h3>
+            <div id="time-list" class="time-list">
+                <!-- Время будет добавляться динамически -->
+            </div>
+        </div>
+    </div>
+</section>

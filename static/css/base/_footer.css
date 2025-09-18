@@ -1,0 +1,240 @@
+/* Footer Styles - Современный необрутализм */
+.site-footer {
+    background: var(--text-bt-color);
+    padding: 70px 20px 40px;
+    margin-top: 100px;
+    border-top: 3px solid var(--organic);
+    position: relative;
+    overflow: hidden;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg,
+        var(--accent-secondary) 0%,
+        var(--olive-green) 50%,
+        var(--organic) 100%);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-section {
+    position: relative;
+}
+
+.footer-section h4 {
+    color: var(--text-color);
+    margin-bottom: 25px;
+    font-family: 'Inter', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 0 0 15px 0;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: var(--accent-secondary);
+    border-radius: 2px;
+}
+
+.footer-section p {
+    color: var(--text-color-light);
+    margin-bottom: 15px;
+    line-height: 1.6;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.footer-social-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-color-light);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid transparent;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.footer-social-link:hover {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--organic);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(106, 111, 76, 0.15);
+}
+
+.footer-social-link img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    filter: grayscale(100%);
+    opacity: 0.7;
+}
+
+.footer-social-link:hover img {
+    transform: scale(1.2) rotate(5deg);
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.footer-social-link span {
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 70px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(106, 111, 76, 0.3);
+    color: var(--text-color-light);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    position: relative;
+}
+
+.footer-bottom::before {
+    content: '•';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent-secondary);
+    font-size: 1.5rem;
+}
+
+/* Геометрические акценты */
+.footer-geometric {
+    position: absolute;
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.footer-geometric-1 {
+    top: 20%;
+    right: 10%;
+    width: 100px;
+    height: 100px;
+    border: 3px solid var(--accent-secondary);
+    border-radius: 50%;
+}
+
+.footer-geometric-2 {
+    bottom: 30%;
+    left: 5%;
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--olive-green);
+    transform: rotate(45deg);
+}
+
+/* Адаптивность */
+@media (max-width: 968px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .footer-section h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-social {
+        align-items: center;
+    }
+
+    .footer-social-link {
+        min-width: 250px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .site-footer {
+        padding: 50px 15px 30px;
+        margin-top: 80px;
+    }
+
+    .footer-social-link {
+        min-width: 200px;
+        padding: 10px 15px;
+    }
+
+    .footer-geometric {
+        display: none;
+    }
+}
+
+/* Анимации */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.footer-social-link {
+    animation: float 6s ease-in-out infinite;
+}
+
+.footer-social-link:nth-child(1) { animation-delay: 0s; }
+.footer-social-link:nth-child(2) { animation-delay: 2s; }
+.footer-social-link:nth-child(3) { animation-delay: 4s; }
+
+/* Микро-взаимодействия */
+.footer-social-link:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+}
+
+
+.footer-links {
+    margin-top: 2rem;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.footer-link {
+    color: var(--text-color-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color var(--transition);
+}
+
+.footer-link:hover {
+    color: var(--organic);
+    text-decoration: underline;
+}

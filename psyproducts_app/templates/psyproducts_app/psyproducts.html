@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/psyproducts.css' %}"/>
+{% endblock %}
+
+{% block content %}
+
+    <div class="container-products">
+        <h1>Мои продукты</h1>
+
+        <div class="basket-sections">
+            <!-- Бесплатные методички -->
+            <div class="basket-section free">
+                <h2>Бесплатные продукты</h2>
+
+                {% if free_products %}
+                    <ul class="product-list">
+                        {% for product in free_products %}
+                        <li class="product-item">
+                            <span class="product-name">{{ product.name }}</span>
+                            {% if not product.is_free %}
+                                <span class="product-price">{{ product.price }} ₽</span>
+                            {% endif %}
+                            <div class="product-actions">
+                                <button class="remove-btn details-btn"
+                                        data-product-id="{{ product.id }}"
+                                        data-product-name="{{ product.name }}"
+                                        data-product-description="{{ product.description }}">
+                                    Подробнее
+                                </button>
+                                {% if product.is_free and product.document_file %}
+                                    <button class="btn btn-primary download-btn"
+                                            data-product-id="{{ product.id }}"
+                                            data-download-url="{{ product.document_file.url }}">
+                                        Скачать
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="empty-basket">Бесплатные продукты сейчас находятся в активной разработке.</p>
+                {% endif %}
+            </div>
+
+            <!-- Платные методички -->
+            <div class="basket-section paid">
+                <h2>Платные продукты</h2>
+
+                {% if paid_products %}
+                    <ul class="product-list">
+                        {% for product in paid_products %}
+                        <li class="product-item">
+                            <span class="product-name">{{ product.name }}</span>
+                            <span class="product-price">{{ product.price }} ₽</span>
+                            <div class="product-actions">
+                                <button class="remove-btn details-btn"
+                                    data-product-id="{{ product.id }}"
+                                    data-product-name="{{ product.name }}"
+                                    data-product-description="{{ product.description }}">
+                                    Подробнее
+                                </button>
+                                <button class="btn btn-primary add-to-cart-btn"
+                                        data-product-id="{{ product.id }}"
+                                        data-product-name="{{ product.name }}"
+                                        data-product-price="{{ product.price }}">
+                                    Добавить
+                                </button>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="empty-basket">Платные продукты сейчас находятся в активной разработке.</p>
+                {% endif %}
+
+                <div class="basket-section cart">
+                    <h2>Корзина</h2>
+
+                    <div id="cart-items">
+                            <p class="empty-basket" id="empty-cart">Корзина пуста</p>
+                    </div>
+
+                    <div id="cart-total" style="display: none;">
+                        <p class="total-price">Общая сумма: <span id="total-amount">0</span> ₽</p>
+                        <button class="btn btn-primary" id="purchase-btn">Хочу приобрести</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Модальное окно для описания продукта -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalProductName"></h2>
+            <p id="modalProductDescription"></p>
+        </div>
+    </div>
+{%  endblock  %}
+
+{% block extra_js %}
+  <script src="{% static 'js/psyproducts.js' %}"></script>
+{% endblock %}

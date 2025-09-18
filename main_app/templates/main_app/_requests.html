@@ -1,0 +1,32 @@
+{% load static %}
+<section class="requests-section">
+    <div class="header-requests">
+        <h2>С какими запросами ко мне можно обратиться</h2>
+    </div>
+
+    <div class="circles-container-requests">
+        {% for query in service_queries %}
+        <div class="circle-requests">
+            <div class="circle-content-requests">{{ query.title }}{% if query.description %}<br>{{ query.description }}{% endif %}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="requests-footer-note">
+        <p class="methods-note">Все методы работы основаны на научных принципах КПТ, без эзотерики</p>
+    </div>
+
+    <div class="no-service-queries">
+        <h3 class="main-heading">Пожалуйста, обратите внимание, что я не работаю со следующими направлениями:</h3>
+
+        <ul class="problems-list">
+            {% for service in exclude_service %}
+            <li data-number="{{ forloop.counter|stringformat:'02d' }}">{{ service.title }}{% if service.description %}: {{ service.description }}{% endif %}</li>
+            {% endfor %}
+        </ul>
+
+        <p class="description">Эти направления требуют специализированной помощи, и я могу порекомендовать вам коллег, которые профессионально работают с данными запросами.<br>
+        Для всех остальных вопросов, связанных с тревожностью, депрессивными состояниями, проблемами в отношениях и другими трудностями, перечисленными в моей специализации, буду рада помочь.</p>
+
+    </div>
+</section>

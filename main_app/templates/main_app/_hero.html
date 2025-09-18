@@ -1,0 +1,11 @@
+{% load static %}
+<section class="profile-section">
+        <div class="profile-photo"> <img src="{% static 'img/Diana_hero.jpg' %}" alt="Profile-photo" title="Profile-photo"></div>
+        <div class="profile-content">
+                <h1>ДИАНА СИТДИКОВА</h1>
+                <p>Клинический психолог, психолог КПТ в подходе</p>
+               <a href="{% url 'index' %}#appointment" class="button-link">
+                    <button class="button">Записаться на консультацию</button>
+               </a>
+        </div>
+</section>

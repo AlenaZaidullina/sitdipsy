@@ -1,0 +1,41 @@
+.therapy-format-section {
+    padding: 5rem 0;
+    background-color: var(--text-bt-color);
+    width: 100%;
+}
+
+.therapy-format-container {
+    margin-top: 3%;
+    max-width: 100%;
+    padding-right: 1rem;
+}
+
+.therapy-main-heading {
+    font-size: 1.1rem; /* Размер шрифта заголовка */
+    color: var(--text-color); /* Цвет текста */
+    text-indent: 40%; /* Выравнивание первой строки текста вправо на 40% ширины блока */
+    max-width: 75rem; /* Максимальная ширина блока, ограниченная 75rem */
+    margin: 0 auto; /* Горизонтальное центрирование блока */
+    text-align: right; /* Выравнивание текста по правому краю */
+    padding: 0 0 0 1rem; /* Внутренние отступы: верх=0, право=0, низ=0, лево=1rem */
+    margin-right: 0; /* Убирает правый внешний отступ */
+}
+
+@media (max-width: 768px) {
+    .therapy-format-section {
+        padding: 3rem 0;
+    }
+
+    .therapy-main-heading {
+        padding: 0 0 0 1rem; /* оставляем отступ только слева / top right bottom left */
+        text-align: right;
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .therapy-main-heading {
+        font-size: 1.1rem;
+        letter-spacing: 0.1rem; /* Межбуквенный интервал (добавлено) */
+    }
+}

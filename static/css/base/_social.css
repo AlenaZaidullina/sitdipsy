@@ -1,0 +1,36 @@
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-color-light);
+    transition: all var(--transition);
+}
+
+.social-icon {
+    width: 3rem;
+    height: 2rem;
+}
+
+.social-text {
+    font-size: 1rem;
+    font-weight: 400;
+    vertical-align: 40%;
+}
+
+.social-link:hover {
+    color: var(--telegram-color);
+}
+
+.social-link[href*="instagram"]:hover {
+    color: var(--instagram-color);
+}

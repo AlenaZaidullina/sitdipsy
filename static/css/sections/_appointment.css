@@ -1,0 +1,451 @@
+/* Стили формы */
+.consultation-form {
+    max-width: 36rem;
+    margin: 3rem auto;
+    padding: 2rem;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    font-family: 'Inter Tight', sans-serif;
+    color: var(--text-color);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.select-label {
+    position: static;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter Tight', sans-serif;
+    color: #777;
+    pointer-events: auto;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.5rem 0;
+    border: none;
+    border-bottom: 1px solid #DDC5A9;
+    background-color: transparent;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s;
+    z-index: 1;
+    position: relative;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label {
+    top: -1rem;
+    font-size: 0.8rem;
+    color: var(--text-color);
+}
+
+.form-input:focus {
+    outline: none;
+    border-bottom-color: #DDC5A9;
+}
+
+/* Календарь */
+.calendar-container {
+    margin-top: 1.5rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.month-nav {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    padding: 0 0.5rem;
+}
+
+.month-nav:hover {
+    color: #EA631B;
+}
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-family: 'Inter Tight', sans-serif;
+    color: #555;
+    font-size: 0.8rem;
+    gap: 0.1rem;
+}
+
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.1rem;
+}
+
+.calendar-day {
+    padding: 0.1rem; /* Внутреннее расстояние вокруг текста */
+    text-align: center; /* Выравниваем текст по центру элемента */
+    cursor: pointer; /* Курсор мыши меняется на "указатель пальца" при наведении */
+    font-family: 'Inter Tight', sans-serif; /* Используем шрифт Inter Tight, если доступен, иначе используем стандартный sans-serif */
+    transition: all 0.3s; /* Добавляем плавный переход длительностью 0.3 секунды для любых изменений стиля */
+    font-size: 0.9rem; /* Размер шрифта чуть меньше стандартного размера */
+    aspect-ratio: 2; /* Соотношение сторон блока (ширина вдвое больше высоты) */
+    display: flex; /* Используется Flexbox для центрирования содержимого */
+    align-items: center; /* Центруем содержимое вертикально */
+    justify-content: center; /* Центруем содержимое горизонтально */
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0; /* Серый оттенок фона при наведении */
+}
+
+.calendar-day.selected {
+    background-color: var(--organic); /* цвет фона выделенного дня */
+    color: white; /* цвет текста */
+}
+
+.calendar-day.empty {
+    visibility: hidden; /* Полностью скрываем элемент, сохраняя пространство */
+}
+
+.calendar-day.disabled {
+    color: #ccc; /* Светло-серый цвет текста для недоступных дат */
+    cursor: not-allowed; /* Меняем курсор на запрещающий символ */
+    text-decoration: line-through; /* Перечёркиваем текст, показывая, что эта дата заблокирована */
+}
+
+.calendar-day.available {
+    font-weight: bold; /* Жирный шрифт для доступности выбора */
+    color: var(--text-color);
+    background-color: rgba(118, 128, 93, 0.1); /* Прозрачный оранжевый фон для визуального выделения доступных дат */
+}
+
+/* Чекбоксы */
+.checkbox-group {
+    margin: 2rem 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+}
+
+.checkbox-input {
+    margin-right: 0.5rem;
+}
+
+/* Кнопка */
+.submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--organic);
+    color: white;
+    border: none;
+    font-family: 'Playfair Display SC', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    box-shadow: 3px 5px 20px 0 rgba(118, 128, 93, 0.5);
+    border-radius: 0.3rem;
+}
+
+.submit-btn:hover {
+    box-shadow: 3px 5px 20px 0 rgba(118, 128, 93, 1);
+}
+
+/* Telegram вариант */
+.telegram-option {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-family: 'Playfair Display SC', serif;
+    color: #555;
+}
+
+.telegram-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    color: var(--telegram-color);
+    text-decoration: none;
+    font-family: 'Inter Tight', sans-serif;
+    transition: color 0.3s;
+}
+
+.telegram-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    fill: currentColor;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: var(--bg-color);
+    margin: 10% auto;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 5px;
+    position: relative;
+}
+
+
+
+.close-modal {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #333;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.close-modal:hover {
+    color: #EA631B;
+}
+
+.time-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.time-slot {
+    padding: 0.8rem;
+    background-color: #DDC5A9;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    font-family: 'Inter Tight', sans-serif;
+}
+
+.time-slot:hover {
+    background-color: var(--organic);
+    color: white;
+}
+
+.time-slot.selected {
+    background-color: var(--organic);
+    color: white;
+}
+
+.time-slot.disabled {
+    background-color: #f0f0f0;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Опции оплаты */
+.payment-option {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.payment-option input {
+    margin-right: 0.5rem;
+}
+
+.payment-option label {
+    font-family: 'Inter Tight', sans-serif;
+    color: #333;
+}
+
+.confirmation-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.confirmation-buttons button {
+    flex: 1;
+}
+
+#confirmation-modal .modal-content {
+    max-width: 400px;
+}
+
+#confirmation-modal h3 {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+#confirmation-modal p {
+    font-family: 'Inter Tight', sans-serif;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.form-hint {
+    display: none;
+    color: #666;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+
+
+/* Для мобильных устройств сделаем крестик больше */
+@media (max-width: 768px) {
+    .close-modal {
+        width: 40px;
+        height: 40px;
+        font-size: 2rem;
+        right: 0.5rem;
+        top: 0.5rem;
+    }
+}
+
+@media (max-width: 440px) {
+    .checkbox-label {
+        flex-wrap: wrap; /* Разрешаем перенос на новую строку */
+        line-height: 1.4; /* Увеличиваем межстрочный интервал */
+    }
+
+    .checkbox-label a {
+        display: inline; /* Делаем ссылку строчным элементом */
+        white-space: normal; /* Разрешаем перенос текста */
+        margin-left: 1.5rem;
+    }
+}
+
+/* Стили для согласия на обработку данных */
+.consent-label {
+    flex-direction: row;
+    align-items: flex-start;
+    /*flex-wrap: wrap;*/
+}
+
+.consent-text {
+    display: inline;
+    margin-left: 0.5rem;
+}
+
+.consent-line {
+    display: inline;
+    line-height: 1.4;
+    margin-bottom: 0;
+    white-space: normal;
+}
+
+.consent-line a {
+    color: var(--organic);
+    text-decoration: none;
+    transition: color 0.3s;
+    white-space: nowrap; /* Ссылки не переносятся, переносятся целиком */
+}
+
+.consent-line a:hover {
+    color: #CC7C72;
+    text-decoration: underline;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .consent-text {
+        margin-left: 0.5rem;
+    }
+
+    .consent-line {
+        font-size: 0.9rem;
+    }
+
+    .consent-line a {
+        white-space: normal; /* На мобильных ссылки могут переноситься */
+    }
+}
+
+@media (max-width: 440px) {
+    .consent-label {
+        flex-wrap: wrap;
+    }
+
+    .consent-text {
+        margin-left: 0.5rem;
+        display: block;
+        width: calc(100% - 2rem);
+    }
+
+    .consent-line {
+        font-size: 0.85rem;
+        line-height: 1.3;
+        display: inline;
+    }
+
+    .consent-line a {
+        white-space: normal;
+        display: inline;
+        margin-left: -0.1rem;
+    }
+}
+
+
+
+/* Стили для секции согласия */
+.consent-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border: 2px solid #f0f0f0;
+    border-radius: 8px;
+}
+
+.btn-consent {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #76805D;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Inter Tight', sans-serif;
+    transition: background-color 0.3s;
+}
+
+.btn-consent:hover {
+    background-color: #5a6347;
+    color: white;
+}
+
+.consent-required, .consent-given {
+    text-align: center;
+}

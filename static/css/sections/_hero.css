@@ -1,0 +1,45 @@
+.profile-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 50vh; /* Не на весь экран */
+
+    position: relative; /* Для позиционирования шапки */
+    margin-top: 3rem;
+
+    @media screen and (min-width: 600px) {
+        grid-template-columns: 1fr 1fr; /* 50% фото, 50% контент */
+        min-height: auto;
+    }
+
+}
+
+.profile-photo img {
+    width: 100%;
+    max-width: 100%; /* Не слишком крупное фото */
+    height: auto;
+    display: block;
+    box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.profile-content h1 {
+    width: 100%;
+    margin-bottom: 0.5rem; /* Отступ перед кнопкой */
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.profile-content p {
+    margin-bottom: 1.3rem;
+    font-size: 0.8rem;
+}

@@ -1,0 +1,269 @@
+/* Контейнер с максимальной шириной и горизонтальным центрированием */
+.container {
+    /*max-width: 75rem;*/
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Раздел образования с внутренним вертикальным отступом */
+.education-section {
+    padding: 2.5rem 0;
+    position: relative;
+}
+
+/* Заголовок раздела с анимацией появления */
+.section-title {
+    margin-bottom: 3.75rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px); /* Начальное смещение вниз */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Анимация плавного появления */
+    color: var(--text-color);
+}
+
+/* Класс для видимого заголовка */
+.section-title.visible {
+    opacity: 1;
+    transform: translateY(0); /* Возвращение в исходное положение */
+}
+
+/* Временная шкала с абсолютным позиционированием линии */
+.timeline {
+    position: relative;
+    padding-top: 2.5rem;
+}
+
+/* Линия временной шкалы */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--accent-line);
+    transform: translateX(-50%); /* Центрирование линии по центру контейнера */
+    z-index: 0;
+}
+
+/* Элемент временного ряда с гибким расположением и анимацией */
+.timeline-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px); /* Начальное смещение вниз */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Анимация плавного появления */
+}
+
+/* Класс для видимого элемента временного ряда */
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0); /* Возвращение в исходное положение */
+}
+
+/* Год на временной шкале */
+.timeline-year {
+    width: 45%;
+    text-align: right;
+    padding-right: 3.75rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+/* Содержимое события на временной шкале */
+.timeline-content {
+    width: 45%;
+    padding-left: 3.75rem;
+}
+
+/* Список содержимого без маркеров */
+.timeline-content ul {
+    list-style: none;
+}
+
+/* Пункты списка с маркером перед текстом */
+.timeline-content li {
+    margin-bottom: 0.93rem;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+/* Маркеры пунктов списка */
+.timeline-content li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.625rem;
+    width: 0.375rem;
+    height: 0.375rem;
+    background-color: var(--accent-line);
+    border-radius: 50%; /* Круглый маркер */
+}
+
+/* Подсписки внутри пункта списка */
+.timeline-content ul ul {
+    margin-top: 0.625rem;
+    padding-left: 1.25rem;
+}
+
+/* Стили для элементов подсписка */
+.timeline-content ul ul li:before {
+    content: "-"; /* Символ тире вместо маркера */
+    background-color: transparent;
+    width: auto;
+    height: auto;
+    top: 0;
+    left: 0;
+}
+
+/* Декоративная линия с анимацией появления */
+.decorative-line {
+    width: 100%;
+    height: 0.125rem;
+    margin: 5rem 0;
+    background-color: #C19570;
+    opacity: 0;
+    transform: translateX(-20px); /* Начальное смещение влево */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Анимация плавного появления */
+}
+
+/* Класс для видимой декоративной линии */
+.decorative-line.visible {
+    opacity: 1;
+    transform: translateX(0); /* Возвращение в исходное положение */
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 768px) {
+    /* Переход на колончатое расположение временных рядов */
+    .timeline-item {
+        flex-direction: column;
+        margin-left: 1.6rem;
+    }
+
+    /* Изменение ширины и выравнивания текста */
+    .timeline-year,
+    .timeline-content {
+        width: 100%;
+        text-align: left;
+        padding: 0;
+    }
+
+    /* Уменьшение размера шрифта года */
+    .timeline-year {
+        margin-bottom: 1.25rem;
+        font-size: 1.25rem;
+    }
+
+    /* Смещение линии ближе к левому краю */
+    .timeline-line {
+        left: 1.25rem;
+    }
+}
+
+
+
+.timeline-content li small {
+    display: block;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 0.3em;
+}
+
+/* Стили для ссылок на дипломы */
+.timeline-content li {
+    cursor: pointer; /* Для десктопов - курсор в виде руки */
+    position: relative;
+    padding-left: 1.25rem;
+    transition: color 0.3s ease;
+}
+
+.timeline-content li:hover {
+    color: var(--text-color); /* Цвет при наведении */
+    text-decoration: underline;
+    text-decoration-color: var(--organic); /* цвет подчеркивания */
+}
+
+/* Иконка ссылки */
+.link-icon {
+    width: 12px;
+    height: 12px;
+    margin-left: 5px;
+    vertical-align: middle;
+
+}
+
+/* Модальное окно для диплома */
+.diploma-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.diploma-modal-content {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.diploma-modal-content img {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.diploma-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 30px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    z-index: 1001;
+    display: none;
+}
+
+#prevDiploma {
+    left: 20px;
+}
+
+#nextDiploma {
+    right: 20px;
+}
+
+.diploma-nav:hover {
+    background: rgba(0,0,0,0.8);
+}
+
+/* Показываем иконку только на мобильных */
+@media (max-width: 768px) {
+
+
+    .timeline-content li {
+        cursor: default; /* На мобильных не нужен курсор в виде руки */
+    }
+}
+
+
+

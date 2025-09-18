@@ -1,0 +1,19 @@
+/*  Сброс стилей и базовые настройки    */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Учитываем padding и border в ширине элемента */
+    scrollbar-width: thin; /* Тонкая дорожка */
+    scrollbar-color: transparent transparent; /* Цвет дорожки и бегунка */
+}
+
+/* Базовые настройки html */
+html {
+    font-size: 16px; /* Базовый размер шрифта */
+}
+
+/* Настройки body и html */
+body, html {
+    width: 100%; /* Полная ширина окна */
+    overflow-x: hidden; /* Запрет горизонтального скролла */
+}

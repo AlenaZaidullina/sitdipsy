@@ -1,0 +1,27 @@
+/*  Основные структурные стили  */
+body {
+    background-color: var(--bg-color);
+}
+
+.profile-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 0;
+    z-index: 100;
+}
+
+
+/* Декоративные элементы */
+.section-divider {
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(106, 111, 76, 0.1) 30%,
+        rgba(106, 111, 76, 0.1) 70%,
+        transparent 100%);
+    margin: 2rem auto;
+    width: 60%;
+    border: none;
+}

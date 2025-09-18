@@ -1,0 +1,319 @@
+/* Скрываем обе линии по умолчанию */
+.desktop-line, .mobile-line {
+    display: none;
+}
+
+/* >768 */
+@media (min-width: 768px) {
+    .desktop-line {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: 6rem;
+        overflow: visible;
+        shape-rendering: geometricPrecision;
+        vector-effect: non-scaling-stroke;
+    }
+
+    .mobile-line {
+        display: none !important;
+    }
+}
+
+/* <768 */
+@media (max-width: 767px) {
+    .mobile-line {
+        display: block;
+        width: 100%;
+        height: 300px;
+        margin-top: 7rem;
+        overflow: visible;
+        shape-rendering: geometricPrecision;
+        vector-effect: non-scaling-stroke;
+    }
+
+    .desktop-line {
+        display: none !important;
+    }
+}
+
+.full-width-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    min-height: 25rem;
+}
+
+.dashed-line {
+    stroke-dasharray: 5,3;
+    stroke-width: 1px;
+    pointer-events: none;
+    stroke: var(--organic);
+}
+
+.stright-line {
+    stroke: var(--organic);
+}
+
+.mobile-main-line, .mobile-secondary-line {
+    stroke: var(--organic);
+}
+
+/* Основные стили для нумерованных кругов */
+.numbered-circle {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.numbered-circle circle {
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+}
+
+.numbered-circle:hover circle {
+    filter: drop-shadow(3px 3px 5px var(--hover-shadow));
+    r: 18px;
+   }
+
+.numbered-circle text {
+    user-select: none;
+    pointer-events: none;
+    font-family: Arial, sans-serif;
+}
+
+/* Стили для подписей точек */
+.point-label {
+    font-size: 0.7rem;
+    fill: var(--text-color);
+    text-anchor: middle;
+    pointer-events: none;
+    z-index: 2;
+    paint-order: stroke;
+
+}
+
+/* Стили для соединительных линий */
+.connector-line {
+    pointer-events: none;
+    stroke: var(--organic);
+    stroke-width: 1;
+    z-index: 1;
+}
+
+/* Для верхних подписей */
+.point-label.top + .connector-line {
+    y1: 0;
+    y2: -20;
+}
+
+/* Для нижних подписей */
+.point-label.bottom + .connector-line {
+    y1: 10;
+    y2: 20;
+}
+
+/* Стили для подсказок */
+.hint-label {
+    font-size: 0.9rem;
+    color: var(--organic);
+    font-style: normal;
+    position: relative;
+    padding-top: 1rem;
+    text-align: center;
+    padding: 1rem 0; /* отступ сверху и снизу */
+}
+
+.hint-label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background-color: var(--organic);
+}
+
+.hint-label::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 1px;
+    background-color: var(--organic);
+}
+
+.numbered-circle:hover  {
+    opacity: 1;
+}
+
+/* Стили для блока описания */
+.description-container {
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.description-box {
+    position: relative;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, height 0.3s ease;
+    max-width: 500px;
+    width: 90%;
+    margin-top: 7rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.description-box.active {
+    opacity: 1;
+    height: auto;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.description-box h3 {
+    color: var(--organic);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.description-box p {
+    margin-bottom: 0;
+    line-height: 1.4;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+/* Адаптация для планшетов */
+@media (max-width: 768px) {
+    .full-width-container {
+        margin: 2rem 0;
+        min-height: 15rem;
+    }
+
+    /* Текст внутри кругов */
+    .numbered-circle > text {
+        font-size: 8px;
+    }
+
+    /* Подписи */
+    .point-label {
+        font-size: 0.5rem;
+        transform: translateY(-0.5rem);
+    }
+
+    .point-label tspan {
+        font-size: inherit;
+        display: block;
+        line-height: 1.2;
+    }
+
+
+    /* Линии соединения */
+    .connector-line {
+        stroke-width: 0.8;
+    }
+
+    /* Для верхних подписей */
+    .point-label.top + .connector-line {
+        y2: -15px;
+    }
+
+    /* Для нижних подписей */
+    .point-label.bottom + .connector-line {
+        y2: 15px;
+    }
+
+    /* Блок описания */
+    .description-container {
+        margin-top: 1rem;
+    }
+
+    .description-box {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .description-box h3 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .description-box p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 767px) {
+    .mobile-main-line, .mobile-secondary-line {
+        stroke-width: 1.5px;
+    }
+
+    /* Адаптация кругов для мобильной линии */
+    .numbered-circle circle {
+        r: 12px ;
+    }
+
+    .numbered-circle circle + circle {
+        r: 9px ;
+    }
+
+    .numbered-circle > text {
+        font-size: 8px ;
+    }
+
+    .point-label {
+        font-size: 0.9rem !important;
+    }
+
+}
+
+/* Адаптация для экранов шириной менее 480 пикселей */
+@media (max-width: 480px) {
+    .full-width-container {
+        margin: 1rem 0;
+        min-height: 12rem;
+    }
+
+    .mobile-line {
+        width: 100vw;
+        height: auto;
+    }
+
+    .mobile-main-line, .mobile-secondary-line {
+        stroke-width: 2px;
+    }
+
+    /* Регулировка размера шрифта меток точек */
+    .point-label{
+        font-size: 0.8rem !important;
+    }
+
+
+
+    /* Сокращение длины соединительных линий */
+    .point-label.top + .connector-line {
+        y2: -10px;
+    }
+
+    .point-label.bottom + .connector-line {
+        y2: 10px;
+    }
+}
+

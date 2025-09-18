@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+{%  load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;700&family=Inter:wght@450;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    {% block extra_css %}
+    {% endblock %}
+</head>
+<body>
+
+
+    <header class="profile-header">
+        <!-- Гамбургер-иконка для мобильной версии -->
+        <div class="hamburger" id="hamburger">
+            <div class="hamburger-line"></div>
+            <div class="hamburger-line"></div>
+        </div>
+
+        <!-- Десктопное меню -->
+        <nav class="profile-menu desktop-menu">
+            <ul>
+                <li><a href="{% url 'index' %}#about-me">Обо мне</a></li>
+                <li><a href="{% url 'index' %}#education">Образование</a></li>
+                <li><a href="{% url 'index' %}#rules">Правила терапии</a></li>
+                <li><a href="{% url 'moms_channel' %}">Канал для мам</a></li>
+                <li><a href="{% url 'psyproducts' %}">Продукты</a></li>
+                <li><a href="{% url 'index' %}#appointment">Записаться</a></li>
+            </ul>
+        </nav>
+
+        <!-- Мобильное меню -->
+        <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+        <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="{% url 'index' %}#about-me">Обо мне</a></li>
+                <li><a href="{% url 'index' %}#education">Образование</a></li>
+                <li><a href="{% url 'index' %}#rules">Правила терапии</a></li>
+                <li><a href="{% url 'moms_channel' %}">Канал для мам</a></li>
+                <li><a href="{% url 'psyproducts' %}">Продукты</a></li>
+                <li><a href="{% url 'index' %}#appointment">Записаться на консультацию</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://t.me/sitdipsy" class="social-link">
+                    <img src="{% static 'img/send.svg' %}" alt="Telegram" class="social-icon">
+                    <span class="social-text">Мой Telegram</span>
+                </a>
+                <a href="https://www.instagram.com/sitdikova.psy" class="social-link">
+                    <img src="{% static 'img/instagram.svg' %}" alt="Instagram" class="social-icon">
+                    <span class="social-text">Мой Instagram</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+
+
+{% block content %}
+
+
+{% endblock %}
+
+
+   <!-- Кнопка "Наверх" -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </div>
+
+
+        <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Контакты</h4>
+                <p>Email: dianakhamatzyanova@yandex.ru</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Социальные сети</h4>
+                <div class="footer-social">
+                    <a href="https://t.me/sitdipsy" class="footer-social-link">
+                        <img src="{% static 'img/send.svg' %}" alt="Telegram">
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://www.instagram.com/sitdikova.psy" class="footer-social-link">
+                        <img src="{% static 'img/instagram.svg' %}" alt="Instagram">
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://t.me/DaiOkoshkidiana_bot" class="footer-social-link">
+                        <img src="{% static 'img/message-circle.svg' %}" alt="Чат-бот в Телеграм">
+                        <span>Чат-бот в Телеграм</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Часы работы</h4>
+                <p>Пн-Пт: 10:00 - 20:00</p>
+                <p>Сб-Вс: выходной</p>
+            </div>
+        </div>
+
+         <div class="footer-bottom">
+            <p>&copy; 2025. Все права защищены.</p>
+            <div class="footer-links">
+                <a href="{% url 'privacy_policy' %}" class="footer-link">
+                    Политика конфиденциальности
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/animation.js' %}"></script>
+    <script src="{% static 'js/appointment.js' %}"></script>
+    <script src="{% static 'js/process_timeline.js' %}"></script>
+    <script src="{% static 'js/request.js' %}"></script>
+    <script src="{% static 'js/popup.js' %}"></script>
+
+    {% block extra_js %}
+
+    {% endblock %}
+
+
+
+
+</body>
+</html>

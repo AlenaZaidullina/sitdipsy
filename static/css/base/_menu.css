@@ -1,0 +1,142 @@
+/* Десктопное меню */
+.profile-menu.desktop-menu ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 30px;
+    margin: 0;
+    padding: 0 40px;
+    list-style: none;
+}
+
+
+
+.profile-menu.desktop-menu ul li a:hover {
+    text-decoration: underline; /*  Добавляет подчеркивание под текстом  */
+    text-decoration-color: var(--organic); /* цвет подчеркивания */
+    text-underline-offset: 3px;  /*  Отодвигает линию подчеркивания ниже текста на 3 пикселя  */
+    transition: var(--transition);  /*  плавный переход изменений   */
+}
+
+.profile-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+/* Мобильное меню */
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: var(--mobile-menu-width);
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 100;
+    padding: 80px 20px 20px;
+    transition: right var(--transition);
+    overflow-y: auto;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: var(--text-color-light);
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+    padding: 8px 0;
+    transition: color var(--transition);
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+.mobile-menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--overlay-color);
+    z-index: 100;
+}
+
+.mobile-menu-overlay.active {
+    display: block;
+}
+
+@media (max-width: 1068px) {
+    .profile-menu.desktop-menu {
+        display: none;
+    }
+
+    .mobile-menu {
+        display: block;
+        transform: translateX(100%);
+    }
+
+    .mobile-menu.active {
+        transform: translateX(0);
+    }
+}
+
+@media (min-width: 1069px) {
+    .mobile-menu {
+        display: none !important;
+    }
+}
+
+
+
+/* Активный пункт меню */
+.profile-menu a.active {
+    color: var(--organic);
+    font-weight: 500;
+    position: relative;
+}
+
+.profile-menu a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--organic);
+    animation: underlineGrow 0.3s ease;
+}
+
+@keyframes underlineGrow {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Для мобильного меню */
+.mobile-menu a.active {
+    color: var(--organic);
+    font-weight: 500;
+}
+
+/* Анимации для секций */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+

@@ -1,0 +1,341 @@
+
+.cbt-section-human {
+    padding: 4rem 0;
+    background: var(--bg-color);
+    position: relative;
+}
+
+.cbt-container-human {
+    max-width: 750px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+.cbt-header-human {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    padding: 0 2rem;
+}
+
+.cbt-title-human {
+    color: var(--text-color);
+    font-weight: 350;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+}
+
+.cbt-subtitle-human {
+    font-size: 1.1rem;
+    color: var(--organic);
+    font-weight: 400;
+    line-height: 1.5;
+    font-style: normal;
+}
+
+/* Основной контент */
+.cbt-content-human {
+    display: grid;
+    gap: 3rem;
+}
+
+.cbt-intro-human {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-color-light);
+    text-align: center;
+    padding: 0 2rem;
+    font-weight: 350;
+}
+
+/* Доказательства с тонкими разделителями */
+.evidence-list-human {
+    display: grid;
+    gap: 2.5rem;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.evidence-item-human {
+    position: relative;
+    padding-left: 3rem;
+}
+
+.evidence-item-human::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236A6F4C'%3E%3Cpath d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") no-repeat center;
+    opacity: 0.8;
+}
+
+.evidence-text-human {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-color-light);
+    margin: 0;
+}
+
+.evidence-text-human strong {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Схема процесса */
+.process-human {
+    text-align: center;
+    margin: 1rem 0;
+    padding: 2.5rem 0;
+    position: relative;
+}
+
+.process-human::before,
+.process-human::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(106, 111, 76, 0.2) 20%,
+        rgba(106, 111, 76, 0.2) 80%,
+        transparent 100%);
+}
+
+.process-human::before { top: 0; }
+.process-human::after { bottom: 0; }
+
+.schema-flow-human {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.schema-item-human {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1rem;
+    color: var(--text-color);
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(106, 111, 76, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.schema-item-human:hover {
+    background: rgba(118, 128, 93, 0.05);
+    transform: translateY(-2px);
+}
+
+.schema-arrow-human {
+    color: var(--organic);
+    font-size: 1.3rem;
+    opacity: 0.6;
+}
+
+/* Этапы терапии */
+.steps-human {
+    display: grid;
+    gap: 2.2rem;
+    margin: 1rem 0;
+}
+
+.step-item-human {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.5rem 0;
+}
+
+.step-number-human {
+    font-family: 'Inter', serif;
+    font-size: 3rem;
+    color: var(--organic);
+    font-weight: 300;
+    line-height: 1;
+    opacity: 0.3;
+}
+
+.step-content-human h4 {
+    font-family: 'Inter', serif;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 0.8rem;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.step-content-human p {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--text-color-light);
+    margin: 0;
+}
+
+/* Научная обоснованность */
+.science-human {
+    text-align: center;
+    padding: 2.5rem;
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.science-human::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    color: var(--organic);
+    opacity: 0.1;
+    font-family: 'Inter', serif;
+}
+
+.science-text-human {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color-light);
+    font-style: italic;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Призыв к действию */
+.cta-human {
+    text-align: center;
+    padding: 1rem 0 1rem;
+    margin-top: 2rem;
+}
+
+.cta-text-human {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color-light);
+    margin-bottom: 2rem;
+}
+
+.cta-button-human {
+    background: transparent;
+    color: var(--organic);
+    border: 2px solid var(--organic);
+    padding: 1.1rem 2.5rem;
+    border-radius: 25px;
+    font-family: 'Inter', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button-human::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--organic);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.cta-button-human:hover {
+    color: white;
+}
+
+.cta-button-human:hover::before {
+    left: 0;
+}
+
+/* Декоративные элементы */
+.human-divider {
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(106, 111, 76, 0.15) 30%,
+        rgba(106, 111, 76, 0.15) 70%,
+        transparent 100%);
+    margin: 1rem auto;
+    width: 50%;
+    border: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .cbt-title-human {
+        font-size: 1.9rem;
+    }
+
+    .cbt-header-human {
+        padding: 0 1rem;
+    }
+
+    .schema-flow-human {
+        flex-direction: column;
+        gap: 0.8rem;
+    }
+
+    .schema-arrow-human {
+        transform: rotate(90deg);
+        margin: 0.5rem 0;
+    }
+
+    .step-item-human {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        text-align: center;
+    }
+
+    .step-number-human {
+        justify-self: center;
+        font-size: 2.5rem;
+    }
+
+    .evidence-item-human {
+        padding-left: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cbt-container-human {
+        padding: 0 1rem;
+    }
+
+    .cbt-title-human {
+        font-size: 1.7rem;
+    }
+
+    .schema-item-human {
+        padding: 0.8rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .science-human {
+        padding: 2rem 1rem;
+    }
+
+    .step-content-human h4 {
+        font-size: 1.1rem;
+    }
+
+    .step-content-human p {
+        font-size: 1rem;
+    }
+}

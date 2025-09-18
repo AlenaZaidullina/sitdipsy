@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+
+{%  block content  %}
+
+{% include 'main_app/_hero.html' %}
+
+{% include 'main_app/_about.html' %}
+
+{% include 'main_app/_education.html' %}
+
+<hr class="section-divider">
+
+{% include 'main_app/_process_timeline.html' %}
+
+<hr class="section-divider">
+
+{% include 'main_app/_rules.html' %}
+
+{% include 'main_app/_requests.html' %}
+
+{% include 'main_app/_cta_contact.html' %}
+
+<hr class="section-divider">
+
+{% include 'main_app/_cbt_therapy.html' %}
+
+<hr class="section-divider">
+
+{% include 'main_app/_therapy_format.html' %}
+
+{% include 'appointment_app/appointment.html' %}
+
+
+ <!-- <a href="{% url 'consent_form' %}" class="btn btn-consent"> -->
+
+
+
+
+
+
+
+
+
+ <!-- Popup для главной страницы -->
+<div id="products-popup" class="popup-overlay">
+    <div class="popup-container">
+        <button class="popup-close">&times;</button>
+        <div class="popup-content">
+            <h3>Полезные материалы для вас</h3>
+            <p>Получите бесплатные методички или присоединяйтесь к нашему сообществу мам</p>
+
+            <div class="popup-options">
+                <div class="popup-option">
+                    <div class="option-icon">📚</div>
+                    <div class="option-content">
+                        <h4>Бесплатные методички</h4>
+                        <p>Практические материалы по работе с тревожностью и самооценкой</p>
+                        <a href="{% url 'psyproducts' %}" class="option-link">Посмотреть продукты →</a>
+                    </div>
+                </div>
+
+                <div class="popup-option">
+                    <div class="option-icon">👶</div>
+                    <div class="option-content">
+                        <h4>Канал для мам</h4>
+                        <p>Сенсорное развитие детей через простые и доступные игры</p>
+                        <a href="{% url 'moms_channel' %}" class="option-link">Узнать больше →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup-footer">
+                <small>Выберите то, что вам больше подходит</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Popup для чат-бота (появляется при скролле до секции записи) -->
+<div id="chatbot-popup" class="popup-overlay">
+    <div class="popup-container">
+        <button class="popup-close">&times;</button>
+        <div class="popup-content">
+            <h3>📱 Получите больше пользы в нашем Telegram-боте!</h3>
+
+            <div class="popup-options">
+                <div class="popup-option">
+                    <div class="option-icon">🧠</div>
+                    <div class="option-content">
+                        <h4>Психологические тесты</h4>
+                        <p>Пройдите тесты на уровень тревоги, депрессии и когнитивных ошибок</p>
+                    </div>
+                </div>
+
+                <div class="popup-option">
+                    <div class="option-icon">📚</div>
+                    <div class="option-content">
+                        <h4>Полезные материалы</h4>
+                        <p>Гайды и рассылка с эксклюзивными материалами от психолога</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="popup-footer" style="text-align: center; margin-top: 1.5rem;">
+                <a href="https://t.me/DaiOkoshkidiana_bot" class="telegram-bot-link" target="_blank" rel="noopener noreferrer">
+                    <svg class="telegram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.135-.26.24-.534.24l.213-3.053 5.56-5.022c.22-.198-.034-.309-.335-.108l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z" fill="currentColor"/>
+                    </svg>
+                    Перейти в чат-бот
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- модальное окно для дипломов и сертификатов должен быть перед endblock -->
+    <div class="diploma-modal" id="diplomaModal">
+        <span id="closeModals" class="close-modal">&times;</span>
+        <button class="diploma-nav" id="prevDiploma">&#10094;</button>
+        <div class="diploma-modal-content">
+            <img id="diplomaImage" src="" alt="Диплом">
+        </div>
+        <button class="diploma-nav" id="nextDiploma">&#10095;</button>
+    </div>
+
+
+{%  endblock %}

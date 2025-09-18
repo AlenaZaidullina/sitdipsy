@@ -1,0 +1,76 @@
+
+.about-me-section {
+    margin: 3.125rem auto; /* Внешний отступ сверху/снизу и центровка по центру экрана */
+    padding: 1.5rem 1.25rem;     /* Внутренние отступы слева и справа */
+}
+
+
+.container-box-about-me {
+    background-color: var(--olive-green);       /* Цвет фона */
+    padding: 20px;                   /* Внутренние отступы на мобильных устройствах */
+    display: grid;
+    grid-template-columns: 1fr;      /* Одну колонку на мобильных устройствах */
+    gap: 20px;                       /* Расстояние между элементами */
+
+}
+
+
+@media screen and (min-width: 880px) {
+    .container-box-about-me {
+        grid-template-columns: 60fr 40fr; /* Две колонки с распределением */
+        gap: 3rem;                        /* Увеличенное расстояние между колонками */
+        padding: 40px;                    /* Больший внутренний отступ */
+    }
+}
+
+
+
+
+.image-section-about-me {
+    width: 100%;                      /* Занимает полную ширину контейнера */
+    display: flex;                     /* Центрирование изображения */
+    justify-content: center;           /* Горизонтально выравниваем изображение по центру */
+    box-shadow: 3px 5px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+
+.photo-placeholder {
+    width: 100%;                      /* Фотография занимает всю доступную ширину */
+ /*    max-width: auto;                  Нет ограничения максимальной ширины */
+    height: auto;                     /* Автоматическая высота */
+    overflow: hidden;                 /* Скрываем лишнее содержимое вне границ */
+
+}
+
+
+.photo-placeholder img {
+    width: 100%;                      /* Заполняет всю ширину плейсхолдера */
+    height: auto;                     /* Сохраняет пропорции */
+   /* object-fit: cover;                 Растягивает изображение, сохраняя соотношение сторон */
+    display: block;                   /* Преобразует изображение в блочный элемент */
+}
+
+
+.text-section-about-me {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    gap: 2.5rem; /* Промежуток между блоками */
+}
+
+.text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    color: white; /*   Цвет текста    */
+}
+
+.bottom-block {
+    text-align: justify;
+    font-size: 1.2rem;
+}
+
+.text-about-me-h1 {
+    font-size: 1.6rem;
+}

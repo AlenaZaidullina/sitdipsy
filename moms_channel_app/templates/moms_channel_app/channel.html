@@ -1,0 +1,559 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/channel.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<section class="moms-channel-section">
+    <div class="moms-accent"></div>
+    <div class="moms-accent"></div>
+
+    <div class="moms-container">
+        <div class="moms-header">
+            <h1 class="moms-title">МАМА СЕНСОРИКА</h1>
+            <h2 class="moms-subtitle">Сенсорное развитие легко и с любовью</h2>
+        </div>
+
+        <hr class="moms-divider">
+
+        <div class="moms-content">
+            <div class="moms-text">
+                <h2 class="moms-description">
+                    Помогаем мамам растить счастливых и гармоничных детей через<br>простые игры
+                </h2>
+                <a href="https://t.me/sitdipsy" class="moms-join-button" target="_blank">
+                    <svg class="moms-telegram-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.14.141-.259.259-.374.261l.213-3.053 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.136-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    Вступить на канал
+                </a>
+            </div>
+
+            <div class="moms-image-container">
+                <img src="{% static 'img/family.jpg' %}" alt="Изображение">
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="moms-divider">
+
+<section>
+    <div class="faq-container">
+        <div class="faq-header">
+            <h1 class="faq-title">Что есть на канале:</h1>
+        </div>
+
+        <ul class="faq-list">
+            <!-- Пункт 1 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Сенсорные упражнения на органы чувств и развитие через быт</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms1.jpg' %}" alt="Сенсорные упражнения" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 2 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Обзоры товаров для развивающей среды</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms2.jpg' %}" alt="Обзоры товаров" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 3 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Подкасты</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms3.jpg' %}" alt="Подкасты" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 4 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Упражнения 0+</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms4.jpg' %}" alt="Упражнения 0+" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 5 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Обзоры игрушек</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms5.jpg' %}" alt="Обзоры игрушек" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 6 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Подборки игрушек и пособий по возрастам</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms6.jpg' %}" alt="Подборки игрушек" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 7 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Потешки 0+</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms7.jpg' %}" alt="Библиотека материалов" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <!-- Пункт 8 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Сенсорные материалы своими руками</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms8.jpg' %}" alt="Сенсорные материалы" class="faq-image">
+                    </div>
+                </div>
+            </li>
+
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Обзоры книг</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="channel-image-content">
+                        <img src="{% static 'img/img_channel_moms9.jpg' %}" alt="Сенсорные материалы" class="faq-image">
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<hr class="moms-divider">
+
+<section class="moms-wants-section">
+    <div class="moms-wants-container">
+        <div class="moms-wants-content">
+            <div class="moms-wants-left">
+                <h2 class="moms-wants-title">Для мам, которые хотят:</h2>
+            </div>
+
+            <div class="moms-wants-right">
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✨</span>
+                    <p class="moms-wants-text">Без стресса и дорогих игрушек заниматься развитием малыша.</p>
+                </div>
+
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✨</span>
+                    <p class="moms-wants-text">Понимать, какая игра нужна <em>прямо сейчас</em> для гармоничного роста.</p>
+                </div>
+
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✨</span>
+                    <p class="moms-wants-text">Видеть осознанный восторг в глазах ребёнка от простых, но таких важных игр.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<hr class="moms-divider">
+
+<section class="client-testimonials-section">
+    <div class="moms-container">
+        <h2 class="moms-testimonials-title">Отзывы</h2>
+
+        <div class="testimonial-carousel-container">
+            <!-- Кнопки навигации -->
+            <button class="carousel-button carousel-button-prev" aria-label="Предыдущий отзыв">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="var(--organic)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+            <button class="carousel-button carousel-button-next" aria-label="Следующий отзыв">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="var(--organic)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+
+
+            <!-- Карусель -->
+            <div class="testimonial-carousel">
+                {% for testimonial in testimonials %}
+                <div class="testimonial-slide">
+                    <img src="{{ testimonial.image.url }}" alt="{{ testimonial.alt_text|default:'Отзыв' }}" class="testimonial-img">
+                </div>
+                {% empty %}
+                <div class="testimonial-slide">
+                    <img src="{% static 'img/testimonials1.jpg' %}" alt="Отзыв по умолчанию" class="testimonial-img">
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Индикаторы (точки) -->
+            <div class="carousel-indicators">
+                {% for testimonial in testimonials %}
+                <button class="indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}" aria-label="Показать отзыв {{ forloop.counter }}"></button>
+                {% endfor %}
+            </div>
+
+            <!-- Индикаторы (точки) -->
+            <div class="carousel-indicators">
+                <button class="indicator active" data-index="0" aria-label="Показать отзыв 1"></button>
+                <button class="indicator" data-index="1" aria-label="Показать отзыв 2"></button>
+                <button class="indicator" data-index="2" aria-label="Показать отзыв 3"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<hr class="moms-divider">
+
+<section class="moms-about-section">
+    <div class="moms-section-container">
+        <div class="moms-about-content">
+            <div class="moms-about-left">
+                <h2 class="moms-about-title">МамаСенсорика</h2>
+            </div>
+
+            <div class="moms-about-right">
+                    <p class="moms-about-description">
+                    «МамаСенсорика» — это ваш проводник в мир сенсорного развития.
+                    Мы превращаем домашние дела, прогулки и обычные вещи в мощные
+                    развивающие занятия. Здесь нет сложной теории — только практика,
+                    которую легко повторить любой маме.
+                    </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<hr class="moms-divider">
+
+<section>
+        <div class="faq-container">
+        <div class="faq-header">
+            <h1 class="faq-title">Часто задаваемые вопросы</h1>
+        </div>
+
+        <ul class="faq-list">
+
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Что такое сенсорное развитие</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Сенсорное развитие — это Умение мозгом обрабатывать сигналы от всех органов чувств: не только глаз и ушей, но и кожи,
+                            вестибулярного аппарата, мышц.
+                            Каждый день малыш познаёт мир через ощущения: трогает, нюхает, пробует на вкус, прислушивается к звукам.
+                            Это и есть сенсорное развитие — основа всего, что будет дальше: речи, мышления, интеллекта и даже поведения.
+                            Простыми словами: это «прокачка» каналов, по которым ребёнок получает информацию о мире. Если каналы работают слаженно —
+                            мозг учится быстрее и эффективнее.  </p>
+                    </div>
+                </div>
+            </li>
+
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Зачем нужно сенсорное развитие ?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <ul class="minimal-icons-list">
+                            <li>
+                                Развитие речи<br>
+                                Речь рождается из ощущений! Прежде чем сказать «мягкий», ребёнок должен потрогать пушистый ковёр.
+                                Нервные окончания на пальцах напрямую связаны с центрами мозга, отвечающими за речь.
+                            </li>
+                            <li>
+                                Основу для интеллекта<br>
+                                    Все умственные операции (сравнение, анализ, классификация) строятся на умении чувствовать разницу между
+                                большим и маленьким, гладким и шершавым, громким и тихим.
+                            </li>
+                            <li>
+                                Уверенность и адаптивность<br>
+                                Ребёнок, который понимает свои ощущения («мне холодно», «этот звук неприятный»), меньше тревожится и лучше управляет эмоциями.
+                            </li>
+                            <li>
+                                Бытовые навыки<br>
+                                Застёгивать пуговицы (мелкая моторика), аккуратно есть (координация), одеваться по погоде (тактильные ощущения) —
+                                всё это зависит от сенсорного развития.
+
+                            </li>
+                            <li>
+                                Профилактика школьных трудностей<br>
+                                Неумение чувствовать разницу между буквами (например, «ш» и «щ») или неумение сидеть за партой 40 минут часто связано с несформированностью сенсорных систем.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span> Как это работает на практике?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Когда вы даёте ребёнку:<br><br>
+                            - Пересыпать крупу → вы тренируете мозг обрабатывать зрительные и тактильные сигналы.<br>
+                            - Слушать колокольчик → развиваете слуховое внимание.<br>
+                            - Кататься на качелях → укрепляете вестибулярный аппарат.<br><br>
+
+                        Короче говоря, сенсорное развитие — это не про «развивашки ради галочки». Это про то, чтобы помочь мозгу ребёнка научиться учиться.</p>
+                    </div>
+                </div>
+            </li>
+
+
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Что именно я получу за 1500₽?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Вы получаете пожизненный доступ к закрытой Telegram-группе, где собрана полная библиотека материалов «МамаСенсорика», включая:</p>
+                        <ul class="minimal-icons-list">
+                            <li>
+                                Более 50+ готовых сценариев сенсорных игр, с пометкой возраста
+                            </li>
+                            <li>
+                                Пособия, чек-листы и подкасты ("как разговаривать с малышом, чтобы стимулировать речь" и "как читать с рождения")
+                            </li>
+                            <li>
+                                Видео-уроки от специалиста ("как создать развивающую среду дома")
+                            </li>
+                            <li>
+                                Возможность задавать вопросы психологу/специалисту по сенсорной интеграции и получать ответы
+                            </li>
+                            <li>
+                                Анонимный чат для конфиденциальных вопросов о развитии и поведении ребенка
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+
+            <!-- Вопрос 2 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Что значит "пожизненный доступ"?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Это значит, что вы один раз оплачиваете доступ и остаетесь в группе навсегда. Вы сможете пользоваться всеми текущими и всеми новыми материалами, которые мы будем добавлять в будущем. Группа будет пополняться регулярно.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Вопрос 3 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Подойдет ли это для моего ребенка возраста 6 мес?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Наши материалы подходят 0+. Вы легко найдете игры, подходящие именно под потребности и возможности вашего ребенка. Большинство игр легко адаптируются под любой возраст и вы сможете играть в них до 1.5 лет.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Вопрос 4 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Как часто добавляются новые материалы?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Мы обновляем контент в группе еженедельно. Новые игры, статьи, ответы на популярные вопросы от участников — вы всегда будете иметь свежий материал для вдохновения.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Вопрос 5 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Как задать вопрос психологу?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Внутри группы есть специальный чат для вопросов. Вы можете задать вопрос:</p>
+                        <ul>
+                            <li><span class="highlight">Открыто:</span> Написав в общий чат</li>
+                            <li><span class="highlight">Анонимно:</span> Написав сообщение специальному боту-анонимайзеру, который перешлет ваш вопрос куратору, не раскрывая ваше имя. Ответ будет опубликован в чате, также без указаний ваших данных и имени.</li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Вопрос 6 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Кто курирует группу и отвечает на вопросы?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Группу курирует Ситдикова Диана – клинический психолог, кпт-терапевт и специалист сенсорной интеграции детей. Это гарантирует экспертный и качественный ответ на ваш запрос.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Вопрос 7 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Мне не подошел продукт. Можно вернуть деньги?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Мы уверены в качестве наших материалов и их пользе. Если в течение 24 часов после вступления в группу вы поймете, что это совершенно не то, что вы искали, мы вернем вам полную стоимость. После 24 часов возврат не предусмотрен, так как вы уже получаете полный доступ ко всем материалам.</p>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Вопрос 8 -->
+            <li class="faq-item">
+                <div class="faq-question">
+                    <span>Я не очень активна в чатах. Стоит ли мне покупать?</span>
+                    <div class="faq-icon"></div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        <p>Конечно! Большинство наших участников — просто "читатели". Вы можете не писать в чате вообще, а только пользоваться библиотекой игр и читать ответы специалиста на вопросы других. Это уже даст вам огромное количество ценной информации.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<hr class="moms-divider">
+
+
+
+<section class="moms-wants-section">
+    <div class="moms-wants-container">
+        <div class="moms-wants-content">
+            <div class="moms-wants-left">
+                <h2 class="moms-wants-title">Почему выбирают нас:</h2>
+            </div>
+
+            <div class="moms-wants-right">
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✓</span>
+                    <p class="moms-wants-text">Просто и доступно: Наши игры требуют только подручных материалов (крупа, вода, ложки, бумага).</p>
+                </div>
+
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✓</span>
+                    <p class="moms-wants-text">Экспертно, но без заумных терминов: Все материалы пишутся  специалистом по сенсорной интеграции и подаются понятным языком.</p>
+                </div>
+
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✓</span>
+                    <p class="moms-wants-text">Системно и по возрасту: Подборки игр от 0+ до 1.5+ лет. Вы всегда знаете, что актуально для вашего ребёнка.</p>
+                </div>
+
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✓</span>
+                    <p class="moms-wants-text">Безопасно: Мы всегда предупреждаем о мерах предосторожности в каждой игре.</p>
+                </div>
+
+                <div class="moms-wants-item">
+                    <span class="moms-wants-icon">✓️</span>
+                    <p class="moms-wants-text">С заботой о маме: Короткие форматы, которые можно посмотреть за чашкой кофе и идеи, которые не отнимут много времени на подготовку.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="moms-divider">
+
+<section class="channel-cost">
+    <div class="container-section-channel-cost">
+        <div class="text-section-channel-cost">
+            <div class="text-block top-block">
+                <p class="text-channel-cost-h1">Стоимость участия</p>
+                <p style="font-size: 1.3rem;">Всего 1500₽ за пожизненный доступ к материалам</p>
+            </div>
+            <div class="text-block bottom-block">
+                <p>Присоединяйтесь к нашему сообществу и получите полный доступ ко всем материалам, играм и консультациям специалиста.</p>
+                <p>Оплата разовая - пользуйтесь ресурсом столько, сколько нужно!</p>
+                <a href="https://t.me/sitdipsy" class="channel-cost-button" target="_blank">
+                    Присоединиться
+                </a>
+            </div>
+        </div>
+
+        <div class="image-section-channel-cost">
+            <div class="photo-section-channel-cost">
+                <img src="{% static 'img/image_section_channel_cost.jpg' %}" alt="Мама и ребенок играют">
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr class="moms-divider">
+
+{%  endblock  %}
+
+{% block extra_js %}
+<script src="{% static 'js/testimonials_moms_channel.js' %}"></script>
+<script src="{% static 'js/faq_moms_channel.js' %}"></script>
+{% endblock %}

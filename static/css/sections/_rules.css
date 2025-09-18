@@ -1,0 +1,73 @@
+.rules-section {
+    padding-top: 2rem;
+    padding-bottom: 3.5rem;
+}
+
+.rules-section h2 {
+}
+
+.rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.rule-card {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    padding: 1.8rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0;
+}
+
+.rule-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+}
+
+.rule-card h3 {
+    color: var(--organic);
+    font-size: 1.4rem;
+    margin: 0 0 1.2rem 0;
+    padding: 0 0 0.5rem 0;
+    font-weight: normal;
+    border-bottom: 1px solid var(--accent-primary);
+}
+
+.rule-card p, .rule-card li {
+    color: var(--text-color-light);
+    margin: 0 0 0.6rem 0;
+    padding: 0;
+}
+
+.rule-card ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rule-card li {
+    margin: 0 0 0.6rem 0;
+    padding: 0;
+}
+
+.highlight {
+    color: var(--text-color);
+    font-weight: 450;
+}
+
+@media (max-width: 768px) {
+    .rules-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .rule-card {
+        padding: 1.2rem;
+    }
+}
