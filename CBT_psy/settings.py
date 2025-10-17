@@ -59,7 +59,7 @@ PAYMENT_TIMEOUT_MINUTES = 30      # Таймаут платежа
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 SITE_URL = os.getenv('SITE_URL', 'http://localhost:8000')
 
 CORS_ALLOWED_ORIGINS = [
@@ -209,7 +209,7 @@ if 'test' in sys.argv:
             'NAME': 'test_' + os.getenv('POSTGRES_DB', 'cbt_psy'),
             'USER': os.getenv('POSTGRES_USER'),
             'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-            'HOST': os.getenv('POSTGRES_HOST', 'localhost'),
+            'HOST': os.getenv('POSTGRES_HOST', 'db'),
             'PORT': os.getenv('POSTGRES_PORT', '5432'),
             'TEST': {
                 'NAME': 'test_' + os.getenv('POSTGRES_DB', 'cbt_psy'),

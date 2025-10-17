@@ -19,8 +19,26 @@ from asgiref.sync import sync_to_async
 from telegram import KeyboardButton, ReplyKeyboardMarkup, InlineKeyboardButton, InlineKeyboardMarkup
 from .urls import BotURLs
 import logging
+from telegram.error import BadRequest
 
 logger = logging.getLogger(__name__)
+
+async def safe_edit_message(query, text, reply_markup=None, parse_mode=None):
+    """Безопасное редактирование сообщения с обработкой ошибок"""
+    try:
+        await query.edit_message_text(
+            text,
+            reply_markup=reply_markup,
+            parse_mode=parse_mode
+        )
+    except BadRequest as e:
+        if "Message is not modified" in str(e):
+            # Если сообщение не изменилось - игнорируем ошибку
+            await query.answer()
+        else:
+            # Другие ошибки пробрасываем
+            raise
+
 
 def get_start_keyboard():
     """Создает клавиатурную кнопку для старта"""
@@ -530,74 +548,67 @@ async def handle_about_consultation_request(update: Update, context: ContextType
 
 
 async def handle_subscribe_materials(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обрабатывает подписку на рассылку из callback"""
     query = update.callback_query
     await query.answer()
 
-    user = query.from_user
-
     try:
-        client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
-
-        if client.subscribed_to_newsletter:
-            await query.answer("Вы уже подписаны на рассылку полезных материалов!")
-            return
-
+        user = query.from_user
+        # ИСПРАВЛЕНО: используем get_or_create вместо get
+        client, created = await sync_to_async(Client.objects.get_or_create)(
+            telegram_id=user.id,
+            defaults={
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            }
+        )
         client.subscribed_to_newsletter = True
         await sync_to_async(client.save)()
 
+        success_text = "✅ Вы успешно подписались на полезные материалы!"
         await query.edit_message_text(
-            "✅ Вы успешно подписались на полезные материалы!\n\n"
-            "Теперь вы будете получать от психолога:\n"
-            "• Статьи по психологии\n"
-            "• Практические упражнения\n"
-            "• Советы по саморазвитию\n"
-            "• Информацию о новых методиках\n\n"
-            "Спасибо за доверие!",
+            text=success_text,
             reply_markup=main_menu_keyboard()
         )
-
-    except Client.DoesNotExist:
-        await query.edit_message_text(
-            "Произошла ошибка. Попробуйте позже.",
-            reply_markup=main_menu_keyboard()
-        )
+    except BadRequest as e:
+        if "Message is not modified" in str(e):
+            pass
+        else:
+            print(f"Error in handle_subscribe_materials: {e}")
+    except Exception as e:
+        print(f"Error in handle_subscribe_materials: {e}")
 
 
 async def handle_unsubscribe_materials(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    """Обрабатывает отписку от рассылки из callback"""
     query = update.callback_query
     await query.answer()
 
-    user = query.from_user
-
     try:
-        client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
-
-        if not client.subscribed_to_newsletter:
-            await query.answer("Вы и так не подписаны на рассылку полезных материалов.")
-            return
-
+        user = query.from_user
+        # ИСПРАВЛЕНО: используем get_or_create вместо get
+        client, created = await sync_to_async(Client.objects.get_or_create)(
+            telegram_id=user.id,
+            defaults={
+                'username': user.username,
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            }
+        )
         client.subscribed_to_newsletter = False
         await sync_to_async(client.save)()
 
+        success_text = "✅ Вы отписались от рассылки полезных материалов."
         await query.edit_message_text(
-            "🔕 Вы отписались от рассылки полезных материалов.\n\n"
-            "Больше не будете получать:\n"
-            "• Статьи по психологии\n"
-            "• Практические упражнения\n"
-            "• Советы по саморазвитию\n"
-            "• Информацию о новых методиках\n\n"
-            "Если передумаете - всегда можно подписаться снова!",
+            text=success_text,
             reply_markup=main_menu_keyboard()
         )
-
-    except Client.DoesNotExist:
-        await query.edit_message_text(
-            "Произошла ошибка. Попробуйте позже.",
-            reply_markup=main_menu_keyboard()
-        )
-
+    except BadRequest as e:
+        if "Message is not modified" in str(e):
+            pass
+        else:
+            print(f"Error in handle_unsubscribe_materials: {e}")
+    except Exception as e:
+        print(f"Error in handle_unsubscribe_materials: {e}")
 
 async def unsubscribe_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Обрабатывает команду /unsubscribe из текстового сообщения"""
@@ -648,15 +659,22 @@ async def handle_subscribe_dates(update: Update, context: ContextTypes.DEFAULT_T
             subscription.is_active = True
             await sync_to_async(subscription.save)()
 
-        await query.edit_message_text(
+        success_text = (
             "✅ Вы подписались на уведомления о новых датах консультаций!\n\n"
-            "Теперь вы будете получать сообщения, когда появятся новые свободные окошки для записи.",
+            "Теперь вы будете получать сообщения, когда появятся новые свободные окошки для записи."
+        )
+
+        await safe_edit_message(
+            query,
+            success_text,
             reply_markup=consultation_issue_keyboard()
         )
 
     except Client.DoesNotExist:
-        await query.edit_message_text(
-            "Произошла ошибка. Попробуйте позже.",
+        error_text = "Произошла ошибка. Попробуйте позже."
+        await safe_edit_message(
+            query,
+            error_text,
             reply_markup=consultation_issue_keyboard()
         )
 
@@ -676,17 +694,30 @@ async def handle_unsubscribe_dates(update: Update, context: ContextTypes.DEFAULT
             subscription.is_active = False
             await sync_to_async(subscription.save)()
 
-            await query.edit_message_text(
+            success_text = (
                 "🔕 Вы отписались от уведомлений о новых датах.\n\n"
-                "Больше не будете получать сообщения о новых свободных окошках для консультаций.",
+                "Больше не будете получать сообщения о новых свободных окошках для консультаций."
+            )
+
+            await safe_edit_message(
+                query,
+                success_text,
                 reply_markup=consultation_issue_keyboard()
             )
 
         except NewDatesSubscription.DoesNotExist:
             await query.answer("Вы и так не подписаны на уведомления о датах.")
+            # ВСЕГДА обновляем сообщение
+            await safe_edit_message(
+                query,
+                "ℹ️ Вы и так не подписаны на уведомления о датах.",
+                reply_markup=consultation_issue_keyboard()
+            )
 
     except Client.DoesNotExist:
-        await query.edit_message_text(
-            "Произошла ошибка. Попробуйте позже.",
+        error_text = "Произошла ошибка. Попробуйте позже."
+        await safe_edit_message(
+            query,
+            error_text,
             reply_markup=consultation_issue_keyboard()
         )

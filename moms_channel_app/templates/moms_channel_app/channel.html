@@ -202,6 +202,12 @@
     <div class="moms-container">
         <h2 class="moms-testimonials-title">Отзывы</h2>
 
+        <!-- Отладочная информация -->
+        <div style="display: none;" class="debug-info">
+            <p>Всего отзывов: {{ testimonials|length }}</p>
+            <p>JS загружен: <span id="js-status">Нет</span></p>
+        </div>
+
         <div class="testimonial-carousel-container">
             <!-- Кнопки навигации -->
             <button class="carousel-button carousel-button-prev" aria-label="Предыдущий отзыв">
@@ -216,7 +222,6 @@
                 </svg>
             </button>
 
-
             <!-- Карусель -->
             <div class="testimonial-carousel">
                 {% for testimonial in testimonials %}
@@ -230,23 +235,17 @@
                 {% endfor %}
             </div>
 
-            <!-- Индикаторы (точки) -->
+            <!-- Индикаторы (точки) - исправленный вариант -->
             <div class="carousel-indicators">
                 {% for testimonial in testimonials %}
                 <button class="indicator {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}" aria-label="Показать отзыв {{ forloop.counter }}"></button>
-                {% endfor %}
-            </div>
-
-            <!-- Индикаторы (точки) -->
-            <div class="carousel-indicators">
+                {% empty %}
                 <button class="indicator active" data-index="0" aria-label="Показать отзыв 1"></button>
-                <button class="indicator" data-index="1" aria-label="Показать отзыв 2"></button>
-                <button class="indicator" data-index="2" aria-label="Показать отзыв 3"></button>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
-
 
 <hr class="moms-divider">
 
