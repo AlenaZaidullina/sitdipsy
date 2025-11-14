@@ -1,6 +1,5 @@
 import pytest
 import json
-from django.test import TestCase, Client
 from django.urls import reverse
 from django.utils import timezone
 from datetime import date, time, timedelta
@@ -122,7 +121,7 @@ class TestAppointmentBooking:
 
     def test_appointment_booking_without_consent(self, client):
         """Тест бронирования без согласия"""
-        # Убедимся, что сессия пустая
+        # Очистка сессии
         session = client.session
         session.flush()
         session.save()

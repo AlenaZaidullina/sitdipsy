@@ -1,8 +1,5 @@
 import pytest
-from django.core.files.uploadedfile import SimpleUploadedFile
 from moms_channel_app.models import Testimonial
-from unittest.mock import patch
-from django.utils import timezone
 
 pytestmark = pytest.mark.django_db
 
@@ -26,23 +23,21 @@ class TestTestimonialModel:
 
     def test_default_ordering(self, create_testimonial):
         """Тест порядка сортировки по умолчанию"""
-        # Создаем отзывы с разным порядком
+
         testimonial_low_order = create_testimonial(order=1)
         testimonial_high_order1 = create_testimonial(order=2)
         testimonial_high_order2 = create_testimonial(order=2)
 
         testimonials = list(Testimonial.objects.all())
 
-        # Проверяем общий порядок: сначала order=1, потом order=2
         assert testimonials[0].order == 1  # Самый низкий order первый
         assert testimonials[1].order == 2
         assert testimonials[2].order == 2
 
-        # Проверяем, что testimonial с order=1 идет первым
+        # Проверяет, что testimonial с order=1 идет первым
         assert testimonials[0] == testimonial_low_order
 
         # Среди объектов с одинаковым order=2, более новые идут первыми
-        # testimonial_high_order2 создан позже, поэтому должен идти перед testimonial_high_order1
         assert testimonial_high_order2.created_at > testimonial_high_order1.created_at
         assert testimonials[1] == testimonial_high_order2  # Более новый first
         assert testimonials[2] == testimonial_high_order1  # Более старый second

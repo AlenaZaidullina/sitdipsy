@@ -1,6 +1,4 @@
 import pytest
-from django.test import TestCase
-from django.utils import timezone
 from datetime import date, time, timedelta
 from appointment_app.models import Appointment, AvailableDate, AvailableTime, Consent, TelegramNotification
 

@@ -11,7 +11,6 @@ from .urls import BotURLs
 def send_follow_up_message(chat_id):
     bot = Bot(token=settings.TELEGRAM_BOT_TOKEN)
     try:
-        # Используем sync_to_async для асинхронных операций
         async def send_message():
             await bot.send_message(
                 chat_id=chat_id,
@@ -19,7 +18,7 @@ def send_follow_up_message(chat_id):
                 reply_markup=main_menu_keyboard()
             )
 
-        # Запускаем асинхронную функцию в синхронном контексте
+        # Запускается асинхронная функция в синхронном контексте
         import asyncio
         asyncio.run(send_message())
 
@@ -44,7 +43,7 @@ def send_anxiety_followup(chat_id, client_id):
                 reply_markup=reply_markup
             )
 
-            # Обновляем статус в базе
+            # Обновляется статус в базе
             from ..models import ConsultationRequest
             request = await sync_to_async(ConsultationRequest.objects.get)(client__telegram_id=client_id)
             request.status = 'followup_sent'

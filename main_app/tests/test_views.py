@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from main_app.models import Education, EducationAchievement, ServiceQuery, ExcludeService
+from main_app.models import Education, ServiceQuery, ExcludeService
 from .factories import EducationFactory, EducationAchievementFactory, ServiceQueryFactory, ExcludeServiceFactory
 
 

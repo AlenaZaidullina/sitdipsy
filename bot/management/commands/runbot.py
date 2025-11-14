@@ -11,10 +11,10 @@ class Command(BaseCommand):
 
         async def run_polling():
             try:
-                # Создаем приложение
+
                 application = create_application()
 
-                # Инициализируем и запускаем polling
+
                 await application.initialize()
                 await application.start()
 
@@ -23,12 +23,12 @@ class Command(BaseCommand):
                 )
                 self.stdout.write("🤖 Bot is now listening for messages...")
 
-                # Запускаем polling
+                # Запускается polling
                 await application.updater.start_polling()
 
                 # Бесконечный цикл чтобы бот не завершался
                 while True:
-                    await asyncio.sleep(3600)  # Спим 1 час
+                    await asyncio.sleep(3600)  # Спит 1 час
 
             except KeyboardInterrupt:
                 self.stdout.write("Stopping bot...")
@@ -40,5 +40,5 @@ class Command(BaseCommand):
                 if 'application' in locals():
                     await application.shutdown()
 
-        # Запускаем асинхронную функцию
+        # Запускается асинхронная функция
         asyncio.run(run_polling())

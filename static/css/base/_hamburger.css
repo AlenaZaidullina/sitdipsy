@@ -36,7 +36,7 @@
 
 @media (max-width: 1068px) {
     .hamburger {
-        display: block; /* Показываем кнопку */
+        display: block; /* Показывает кнопку */
         position: fixed; /* Фиксированное позиционирование */
         z-index: 1001; /* Поверх всех элементов */
         right: 40px; /* Отступ справа */
@@ -46,6 +46,6 @@
 
 @media (min-width: 1069px) {
     .hamburger {
-        display: none; /* Скрываем кнопку */
+        display: none;
     }
 }

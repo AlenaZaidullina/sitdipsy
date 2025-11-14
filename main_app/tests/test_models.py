@@ -1,5 +1,4 @@
 import pytest
-from django.core.files.uploadedfile import SimpleUploadedFile
 from main_app.models import Education, EducationAchievement, DiplomaImage, ServiceQuery, ExcludeService
 from .factories import EducationFactory, EducationAchievementFactory, DiplomaImageFactory, ServiceQueryFactory, \
     ExcludeServiceFactory

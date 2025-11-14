@@ -1,6 +1,4 @@
 from decimal import Decimal
-
-import pytest
 from psyproducts_app.models import Product
 from .factories import ProductFactory
 

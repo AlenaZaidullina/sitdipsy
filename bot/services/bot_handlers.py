@@ -1,6 +1,5 @@
 from telegram import Update
 from telegram.ext import ContextTypes
-from django.utils import timezone
 from ..models import Client, ContentBlock, ConsultationRequest, NewDatesSubscription
 from .keyboards import (main_menu_keyboard,
                         test_confirmation_keyboard,
@@ -33,7 +32,7 @@ async def safe_edit_message(query, text, reply_markup=None, parse_mode=None):
         )
     except BadRequest as e:
         if "Message is not modified" in str(e):
-            # Если сообщение не изменилось - игнорируем ошибку
+            # Если сообщение не изменилось - игнорирует ошибку
             await query.answer()
         else:
             # Другие ошибки пробрасываем
@@ -67,13 +66,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     )
 
-    # Отправляем сообщение со start-кнопкой
+    # Отправляется сообщение со start-кнопкой
     await update.message.reply_text(
         welcome_text,
         reply_markup=get_start_keyboard()
     )
 
-    # СРАЗУ отправляем reply-кнопки для навигации
+    # СРАЗУ отправляется reply-кнопки для навигации
     await update.message.reply_text(
         "Выберите действие:",
         reply_markup=get_main_reply_keyboard()
@@ -116,7 +115,7 @@ async def handle_main_reply_button(update: Update, context: ContextTypes.DEFAULT
         "Выберите, что вас интересует:"
     )
 
-    # Отправляем inline-клавиатуру с основным меню
+    # Отправляет inline-клавиатуру с основным меню
     await update.message.reply_text(
         menu_text,
         reply_markup=main_menu_keyboard()
@@ -585,7 +584,6 @@ async def handle_unsubscribe_materials(update: Update, context: ContextTypes.DEF
 
     try:
         user = query.from_user
-        # ИСПРАВЛЕНО: используем get_or_create вместо get
         client, created = await sync_to_async(Client.objects.get_or_create)(
             telegram_id=user.id,
             defaults={
@@ -618,7 +616,6 @@ async def unsubscribe_command(update: Update, context: ContextTypes.DEFAULT_TYPE
         client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
 
         if not client.subscribed_to_newsletter:
-            # Для команд отправляем текстовое сообщение вместо query.answer()
             await update.message.reply_text("ℹ️ Вы и так не подписаны на рассылку полезных материалов.")
             return
 

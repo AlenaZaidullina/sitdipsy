@@ -14,7 +14,7 @@ class ProductFactory(factory.django.DjangoModelFactory):
     is_free = False
     price = factory.LazyFunction(lambda: Decimal('100.00'))
 
-    # Простое создание файла без сложной логики
+    # Простое создание файла
     @factory.lazy_attribute
     def document_file(self):
         return SimpleUploadedFile(
@@ -33,4 +33,4 @@ class ProductWithoutFileFactory(factory.django.DjangoModelFactory):
     description = factory.Faker('text', max_nb_chars=200)
     is_free = True
     price = Decimal('0.00')
-    document_file = None  # Явно устанавливаем None
+    document_file = None  # Явно устанавливается None

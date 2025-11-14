@@ -1,7 +1,5 @@
 import pytest
 from django.contrib.admin.sites import site
-from django.contrib.auth.models import User
-from django.test import RequestFactory
 from psyproducts_app.models import Product
 from psyproducts_app.admin import ProductAdmin
 

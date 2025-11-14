@@ -1,6 +1,5 @@
 import pytest
 from django.contrib.admin.sites import site
-from django.contrib.auth.models import User
 from main_app.models import Education, EducationAchievement, ServiceQuery, ExcludeService
 from main_app.admin import EducationAdmin, EducationAchievementAdmin, ServiceQueryAdmin, ExcludeServiceAdmin
 

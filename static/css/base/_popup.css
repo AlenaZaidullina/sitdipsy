@@ -139,7 +139,6 @@ body.index-page .popup-button:hover {
     background: var(--organic);
 }
 
-
 .popup-options {
     display: flex;
     flex-direction: column;

@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import Mock, patch, MagicMock, AsyncMock
+from unittest.mock import Mock, patch, AsyncMock
 from django.conf import settings
 
 
@@ -80,7 +80,7 @@ def mock_context():
 def mock_sync_to_async():
     """Мок для sync_to_async"""
     with patch('bot.services.bot_handlers.sync_to_async') as mock_sync:
-        # Создаем обертку, которая возвращает асинхронную функцию
+        #  Обертка, которая возвращает асинхронную функцию
         async def async_wrapper(func, *args, **kwargs):
             return func(*args, **kwargs)
 

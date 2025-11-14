@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django.utils import timezone
-from .models import Appointment, AvailableDate, AvailableTime, TelegramNotification, NewDatesSubscriber, Consent
+from .models import Appointment, AvailableDate, AvailableTime, TelegramNotification, Consent
 from datetime import datetime, date
 from django.contrib import messages
 from django.shortcuts import redirect
@@ -27,14 +27,14 @@ def consent_form(request):
             messages.error(request, 'Пожалуйста, введите ваше ФИО')
             return render(request, 'appointment_app/consent_form.html')
 
-        # Сохраняем согласие в БД
+        # Сохраняется согласие в БД
         Consent.objects.create(
             full_name=full_name,
             ip_address=get_client_ip(request),
             user_agent=request.META.get('HTTP_USER_AGENT', '')
         )
 
-        # Сохраняем в сессии, что согласие получено
+        # Сохраняется в сессии, что согласие получено
         request.session['pd_consent_given'] = True
         request.session['pd_consent_name'] = full_name
         request.session['pd_consent_time'] = timezone.now().isoformat()
@@ -114,7 +114,7 @@ def appointment(request):
                         'message': 'Выбранное время уже занято или недоступно'
                     }, status=400)
 
-                # Создаю запись
+                # Создается запись
                 appointment = Appointment.objects.create(
                     full_name=full_name,
                     phone=phone,
@@ -129,7 +129,7 @@ def appointment(request):
                 available_time.booked_at = timezone.now()
                 available_time.save()
 
-            # Отправляю уведомление в Telegram
+            # Отправляется уведомление в Telegram
             send_telegram_notification(appointment)
 
             return JsonResponse({

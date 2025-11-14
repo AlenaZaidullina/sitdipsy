@@ -1,7 +1,5 @@
 import pytest
 from django.urls import reverse
-from django.core.files.uploadedfile import SimpleUploadedFile
-from moms_channel_app.models import Testimonial
 
 pytestmark = pytest.mark.django_db
 

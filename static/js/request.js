@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const circlesContainer = document.querySelector('.circles-container-requests');
     const circles = document.querySelectorAll('.circle-requests');
 
-    // Проверяем, мобильное ли устройство или touch-симуляция
+    // мобильное ли устройство или touch-симуляция
     function isTouchDevice() {
         return (('ontouchstart' in window) ||
             (navigator.maxTouchPoints > 0) ||
@@ -28,17 +28,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 const circleCenter = circleRect.left + circleRect.width / 2;
                 const distance = Math.abs(circleCenter - containerCenter);
 
-                // Снимаем активный класс со всех кругов
+                // Снимается активный класс со всех кругов
                 circle.classList.remove('active');
 
-                // Находим ближайший к центру круг
+                //  ближайший к центру круг
                 if (distance < minDistance) {
                     minDistance = distance;
                     activeCircle = circle;
                 }
             });
 
-            // Активируем ближайший круг
+            // Активируется ближайший круг
             if (activeCircle && minDistance < activeCircle.offsetWidth / 2) {
                 activeCircle.classList.add('active');
             }
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     block: 'nearest'
                 });
 
-                // Снимаем флаг после завершения анимации
+                // Снимается флаг после завершения анимации
                 setTimeout(() => {
                     isProgrammaticScroll = false;
                 }, 500);
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         function initCarousel() {
             activateCenterCircle();
 
-            // Центрируем при загрузке
+            // Центрируется при загрузке
             setTimeout(() => {
                 if (circles.length > 0) {
                     isProgrammaticScroll = true;
@@ -139,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollTimeout = setTimeout(smoothSnapToCenter, 100);
         });
 
-        // Инициализируем карусель
+        // Инициализируется карусель
         initCarousel();
 
         // Переинициализация при изменении размера окна

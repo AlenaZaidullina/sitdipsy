@@ -1,5 +1,4 @@
-import pytest
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+from telegram import InlineKeyboardMarkup
 
 
 class TestKeyboards:

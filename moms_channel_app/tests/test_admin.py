@@ -1,7 +1,5 @@
 import pytest
 from django.contrib.admin.sites import site
-from django.contrib.auth.models import User
-from django.test import RequestFactory
 from moms_channel_app.models import Testimonial
 from moms_channel_app.admin import TestimonialAdmin
 
@@ -39,7 +37,7 @@ class TestTestimonialAdmin:
         admin = TestimonialAdmin(Testimonial, site)
         preview = admin.image_preview(testimonial)
 
-        # Проверяем, что возвращается HTML с изображением
+        # Проверяет, что возвращается HTML с изображением
         assert 'img' in preview
         assert 'src' in preview
 

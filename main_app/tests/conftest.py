@@ -1,6 +1,5 @@
 import pytest
-from django.core.files.uploadedfile import SimpleUploadedFile
-from main_app.models import Education, EducationAchievement, DiplomaImage, ServiceQuery, ExcludeService
+from main_app.models import Education, EducationAchievement, ServiceQuery, ExcludeService
 
 
 @pytest.fixture

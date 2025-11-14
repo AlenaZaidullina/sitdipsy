@@ -1,7 +1,5 @@
 import pytest
 import tempfile
-import os
-from django.conf import settings
 from django.test import override_settings
 from datetime import timezone
 

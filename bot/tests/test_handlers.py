@@ -1,8 +1,6 @@
 import pytest
-from unittest.mock import AsyncMock, MagicMock, Mock, patch
-from telegram import Update, Message, Chat, User, CallbackQuery
-from telegram.ext import ContextTypes
-import asyncio
+from unittest.mock import AsyncMock, Mock, patch
+
 
 
 class TestStartHandler:
@@ -24,7 +22,7 @@ class TestStartHandler:
         # Проверки
         mock_models['Client'].objects.get_or_create.assert_called_once()
         assert mock_update.message.reply_text.call_count == 2
-        # Проверяем аргументы вызовов
+        # Проверяет аргументы вызовов
         calls = mock_update.message.reply_text.call_args_list
         assert 'Привет' in calls[0][0][0]  # Первое сообщение
         assert 'Выберите действие' in calls[1][0][0]  # Второе сообщение
@@ -72,7 +70,7 @@ class TestMainMenuHandlers:
         """Тест выбора 'Записаться на консультацию' в главном меню"""
         from bot.services.bot_handlers import handle_main_menu
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
         mock_callback_query.data = 'book_consultation'

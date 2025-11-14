@@ -2,7 +2,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Учитываем padding и border в ширине элемента */
+    box-sizing: border-box;
     scrollbar-width: thin; /* Тонкая дорожка */
     scrollbar-color: transparent transparent; /* Цвет дорожки и бегунка */
 }
