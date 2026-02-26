@@ -5,7 +5,7 @@ from .models import Education, EducationAchievement, DiplomaImage, ServiceQuery,
 class DiplomaImageInline(admin.TabularInline):
     model = DiplomaImage
     extra = 1
-    max_num = 3  # Ограничиваем количество изображений до 3
+    max_num = 3  # Ограничивает количество изображений до 3
     fields = ('image', 'order')
 
 class EducationAchievementInline(admin.TabularInline):

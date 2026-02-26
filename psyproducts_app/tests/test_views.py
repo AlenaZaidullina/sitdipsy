@@ -26,7 +26,7 @@ class TestPsyproductsView:
         assert 'free_products' in response.context
         assert 'paid_products' in response.context
 
-        # Проверяем, что продукты правильно разделены
+        # Проверяет, что продукты правильно разделены
         free_products = list(response.context['free_products'])
         paid_products = list(response.context['paid_products'])
 
@@ -37,7 +37,7 @@ class TestPsyproductsView:
 
     def test_view_ordering(self, client):
         """Тест порядка отображения продуктов"""
-        # Создаем продукты
+        # Создаются продукты
         product1 = ProductFactory()
         product2 = ProductFactory()
 
@@ -49,7 +49,7 @@ class TestPsyproductsView:
 
     def test_empty_products(self, client):
         """Тест отображения при отсутствии продуктов"""
-        # Удаляем все продукты
+        # Удаляются все продукты
         Product.objects.all().delete()
 
         response = client.get(reverse('psyproducts'))
@@ -61,7 +61,7 @@ class TestPsyproductsView:
 
     def test_view_with_mixed_products(self, client):
         """Тест со смешанными типами продуктов"""
-        # Создаем продукты разных типов с Decimal ценами
+        # Создаются продукты разных типов с Decimal ценами
         free1 = ProductFactory(is_free=True, price=Decimal('0.00'))
         free2 = ProductWithoutFileFactory()  # Бесплатный без файла
         paid1 = ProductFactory(is_free=False, price=Decimal('100.00'))

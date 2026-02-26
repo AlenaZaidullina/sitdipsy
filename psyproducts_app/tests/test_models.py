@@ -36,13 +36,13 @@ class TestProductModel:
         product2 = ProductFactory()
 
         products = Product.objects.all()
-        # Проверяем что сортировка по убыванию created_at
+        # Проверяется что сортировка по убыванию created_at
         assert products[0].created_at >= products[1].created_at
 
 
     def test_product_with_file(self, db):
         """Тест продукта с файлом"""
-        # Создаем продукт с файлом напрямую
+        # Создается продукт с файлом напрямую
         from django.core.files.uploadedfile import SimpleUploadedFile
 
         product = Product.objects.create(
@@ -67,16 +67,16 @@ class TestProductModel:
         """Тест характеристик полей модели"""
         product = ProductFactory()
 
-        # Проверяем максимальные длины
+        # Проверка максимальной длины
         assert product._meta.get_field('name').max_length == 200
 
-        # Проверяем verbose names
+        # Проверка verbose names
         assert product._meta.get_field('name').verbose_name == "Название продукта"
         assert product._meta.get_field('description').verbose_name == "Описание"
         assert product._meta.get_field('is_free').verbose_name == "Бесплатный продукт"
         assert product._meta.get_field('price').verbose_name == "Цена"
         assert product._meta.get_field('document_file').verbose_name == "Файл методички"
 
-        # Проверяем Decimal характеристики
+        # Проверка Decimal характеристики
         assert product._meta.get_field('price').max_digits == 10
         assert product._meta.get_field('price').decimal_places == 2

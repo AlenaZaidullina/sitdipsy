@@ -11,7 +11,7 @@ def free_product():
         name="Free Test Product",
         description="Free product description",
         is_free=True,
-        price=Decimal('0.00'),  # Исправлено на Decimal
+        price=Decimal('0.00'),
         document_file=SimpleUploadedFile(
             "free_test.pdf", b"free content", content_type="application/pdf"
         )
@@ -25,7 +25,7 @@ def paid_product():
         name="Paid Test Product",
         description="Paid product description",
         is_free=False,
-        price=Decimal('100.50'),  # Исправлено на Decimal
+        price=Decimal('100.50'),
         document_file=SimpleUploadedFile(
             "paid_test.pdf", b"paid content", content_type="application/pdf"
         )
@@ -39,6 +39,6 @@ def product_without_file():
         name="No File Product",
         description="Product without file",
         is_free=True,
-        price=Decimal('0.00'),  # Исправлено на Decimal
+        price=Decimal('0.00'),
         document_file=None
     )

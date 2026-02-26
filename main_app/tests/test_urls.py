@@ -23,10 +23,10 @@ class TestUrls:
         """Тест всех URL паттернов"""
         from main_app import urls
 
-        # Проверяем, что есть только один URL паттерн
+        # Проверяет, что есть только один URL паттерн
         assert len(urls.urlpatterns) == 1
 
-        # Проверяем конкретный паттерн
+        # Проверяет конкретный паттерн
         pattern = urls.urlpatterns[0]
         assert pattern.pattern._route == ''
         assert pattern.name == 'index'

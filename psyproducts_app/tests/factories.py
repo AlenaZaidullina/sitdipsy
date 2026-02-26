@@ -33,4 +33,4 @@ class ProductWithoutFileFactory(factory.django.DjangoModelFactory):
     description = factory.Faker('text', max_nb_chars=200)
     is_free = True
     price = Decimal('0.00')
-    document_file = None  # Явно устанавливается None
+    document_file = None

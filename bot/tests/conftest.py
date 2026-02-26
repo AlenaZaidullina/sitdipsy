@@ -95,14 +95,14 @@ def mock_models(mock_sync_to_async):
             patch('bot.services.bot_handlers.ContentBlock') as mock_content, \
             patch('bot.services.bot_handlers.ConsultationRequest') as mock_request, \
             patch('bot.services.bot_handlers.NewDatesSubscription') as mock_subscription:
-        # Настраиваем моки для методов объектов
+        # Настраивает моки для методов объектов
         mock_client_instance = Mock()
         mock_client_instance.telegram_id = 123456789
         mock_client_instance.username = 'testuser'
         mock_client_instance.first_name = 'Test'
         mock_client_instance.last_name = 'User'
 
-        # Мокируем методы моделей как синхронные функции
+
         mock_client.objects.get_or_create = Mock(return_value=(mock_client_instance, True))
         mock_client.objects.get = Mock(return_value=mock_client_instance)
 

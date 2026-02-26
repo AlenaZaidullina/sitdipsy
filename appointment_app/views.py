@@ -89,7 +89,7 @@ def appointment(request):
 
             # АТОМАРНАЯ операция: проверка и бронирование времени
             with transaction.atomic():
-                # Ищем AvailableDate для указанной даты
+                # Ищет AvailableDate для указанной даты
                 available_date = AvailableDate.objects.filter(
                     date=date_obj,
                     is_available=True
@@ -124,7 +124,7 @@ def appointment(request):
                     pd_consent=data.get('pd_consent', False)
                 )
 
-                # Помечаю время как забронированное
+                # Помечает время как забронированное
                 available_time.is_booked = True
                 available_time.booked_at = timezone.now()
                 available_time.save()
@@ -156,7 +156,7 @@ def appointment(request):
 def get_available_dates(request):
     try:
         today = timezone.now().date()
-        # Получаем даты, у которых есть доступные временные слоты
+        # Получает даты, у которых есть доступные временные слоты
         available_dates = AvailableDate.objects.filter(
             date__gte=today,
             is_available=True
@@ -245,10 +245,10 @@ async def send_new_dates_notification(new_dates):
             logger.warning("TELEGRAM_BOT_TOKEN не установлен. Уведомления не отправлены.")
             return False
 
-        # Импортируем модель из бота
+        # Импортирует модель из бота
         from bot.models import NewDatesSubscription
 
-        # Получаем активных подписчиков
+        # Получает активных подписчиков
         subscribers = await sync_to_async(NewDatesSubscription.objects.filter)(
             is_active=True
         )

@@ -6,7 +6,7 @@ from datetime import timedelta
 
 @shared_task
 def cleanup_unbooked_times():
-    # Очищаем слоты, которые не забронированы на завтра
+    # Очищаются слоты, которые не забронированы на завтра
     times_to_delete = AvailableTime.objects.filter(
         is_booked=False,
         date__date=timezone.now().date() + timedelta(days=1),

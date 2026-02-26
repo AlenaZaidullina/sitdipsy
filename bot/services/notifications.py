@@ -16,7 +16,7 @@ class NotificationService:
                 logger.warning("TELEGRAM_BOT_TOKEN не установлен")
                 return False
 
-            # Получаем активных подписчиков синхронно
+            # Получает активных подписчиков синхронно
             def get_subscribers_sync():
                 return list(NewDatesSubscription.objects.select_related('client')
                           .filter(is_active=True))
@@ -45,7 +45,7 @@ class NotificationService:
                     )
                 except Exception as e:
                     logger.error(f"Ошибка отправки для {subscription.client.telegram_id}: {e}")
-                    # Деактивируем подписку
+                    # Деактивирует подписку
                     async def deactivate_sub(sub):
                         sub.is_active = False
                         await sync_to_async(sub.save)()

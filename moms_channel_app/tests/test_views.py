@@ -21,24 +21,24 @@ class TestMomsChannelView:
 
     def test_moms_channel_view_context(self, client, create_testimonial):
         """Тест контекста представления"""
-        # Создаем активные и неактивные отзывы
+        # активные и неактивные отзывы
         active_testimonial = create_testimonial(is_active=True)
         inactive_testimonial = create_testimonial(is_active=False)
 
         url = reverse('moms_channel')
         response = client.get(url)
 
-        # Проверяем, что в контексте есть testimonials
+
         assert 'testimonials' in response.context
 
-        # Проверяем, что только активные отзывы включены
+
         testimonials = response.context['testimonials']
         assert active_testimonial in testimonials
         assert inactive_testimonial not in testimonials
 
     def test_moms_channel_view_ordering(self, client, create_testimonial):
         """Тест порядка отзывов в представлении"""
-        # Создаем отзывы в разном порядке
+
         testimonial1 = create_testimonial(order=2, is_active=True)
         testimonial2 = create_testimonial(order=1, is_active=True)
 
@@ -47,7 +47,7 @@ class TestMomsChannelView:
 
         testimonials = list(response.context['testimonials'])
 
-        # Проверяем порядок: сначала по order, затем по дате
+
         assert testimonials[0].order <= testimonials[1].order
 
     def test_empty_testimonials(self, client):

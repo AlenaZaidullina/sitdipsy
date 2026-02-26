@@ -1,35 +1,35 @@
 services:
-  web:
-    build: .
+  web:  # Основной Django сервер
+    build: .  # Для сборки из текущей папки
     ports:
-      - "8000:8000"
+      - "8000:8000"  #  Чтобы открыть порт наружу
     env_file:
-      - .env
+      - .env  # Для загрузки переменных из файла
     environment:
-      - DEBUG=${DEBUG}
-      - POSTGRES_HOST=db
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
-    depends_on:
+      - DEBUG=${DEBUG}  # Режим отладки
+      - POSTGRES_HOST=db  # Имя сервиса с БД
+      - POSTGRES_DB=${POSTGRES_DB}  # Название БД
+      - POSTGRES_USER=${POSTGRES_USER}  # Пользователь БД
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}  # Пароль
+      - POSTGRES_PORT=${POSTGRES_PORT}  # Порт БД
+      - CELERY_BROKER_URL=redis://redis:6379/0  # ДЛя очереди задач
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0  # Для хранения результатов
+    depends_on:  # Запускать после этих сервисов
       - db
       - redis
-    volumes:
-      - static_volume:/app/staticfiles
-      - ./media:/app/media
-    command: >
+    volumes:  # Монтирование папок
+      - static_volume:/app/staticfiles  # Для статики
+      - ./media:/app/media  # Для медиа
+    command: >  # Что выполнить при старте
       sh -c "sleep 30 && 
              python manage.py migrate --noinput && 
              python manage.py createcachetable && 
              gunicorn --bind 0.0.0.0:8000 CBT_psy.wsgi:application"
     networks:
-      - app-network
+      - app-network  # Подключить к сети
 
-  db:
-    image: postgres:15
+  db:  # PostgreSQL
+    image: postgres:15  # Готовый образ
     env_file:
       - .env
     environment:
@@ -38,25 +38,48 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    healthcheck:
+    healthcheck:  # Проверка доступности
       test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      interval: 10s  # Проверять каждые 10с
+      timeout: 5s  # Ждать ответ 5 с
+      retries: 5  # Попробовать 5 раз
     networks:
       - app-network
 
   redis:
     image: redis:7-alpine
-    command: redis-server --appendonly yes
+    command: redis-server --appendonly yes  # Включить сохранение на диск
     volumes:
-      - redis_data:/data
+      - redis_data:/data  # Папка для данных
     networks:
       - app-network
 
-  celery:
+  celery:  # Воркер для фоновых задач
     build: .
-    command: celery -A CBT_psy worker --loglevel=info
+    command: celery -A CBT_psy worker --loglevel=info  # Запуск воркера
+    env_file:
+      - .env
+    environment:
+      - DEBUG=${DEBUG}
+      - POSTGRES_HOST=db
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - static_volume:/app/staticfiles  # Доступ к статике
+      - ./media:/app/media  # Доступ к медиа
+    networks:
+      - app-network
+
+  telegram-bot:  # Бот в tg
+    build: .
+    command: python manage.py runbot  #  Запуск бота
     env_file:
       - .env
     environment:
@@ -77,51 +100,28 @@ services:
     networks:
       - app-network
 
-  telegram-bot:
-    build: .
-    command: python manage.py runbot
-    env_file:
-      - .env
-    environment:
-      - DEBUG=${DEBUG}
-      - POSTGRES_HOST=db
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - CELERY_BROKER_URL=redis://redis:6379/0
-      - CELERY_RESULT_BACKEND=redis://redis:6379/0
-    depends_on:
-      - db
-      - redis
-    volumes:
-      - static_volume:/app/staticfiles
-      - ./media:/app/media
-    networks:
-      - app-network
 
-
-  nginx:
+  nginx:  # Веб сервер
     image: nginx:alpine
     ports:
-      - "80:80"
-      - "443:443"
+      - "80:80"  # Для http
+      - "443:443"  # Для https
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
       - ./ssl:/etc/nginx/ssl  # папка для SSL сертификатов
-      - static_volume:/app/staticfiles
-      - ./media:/app/media
+      - static_volume:/app/staticfiles  # Для отдачи статики
+      - ./media:/app/media  # Для отдачи медиа
     depends_on:
-      - web
+      - web  # Запустить после веб сервера
     networks:
       - app-network
 
-volumes:
-  postgres_data:
-  redis_data:
-  static_volume:
+volumes:  # Постоянные хранилища
+  postgres_data:  # Для БД
+  redis_data:  # Для Redis
+  static_volume:  # Для статики
 
 
 networks:
-  app-network:
+  app-network:  # Общая сеть
     driver: bridge

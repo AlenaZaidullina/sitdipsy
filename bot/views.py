@@ -9,6 +9,10 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 import asyncio
 
 from .services.bot_handlers import (start,
+                                    menu_command,
+                                    appointment_command,
+                                    subscribe_command,
+                                    unsubscribe_command_handler,
                                     handle_main_menu,
                                     handle_test_confirmation,
                                     handle_start_button,
@@ -40,6 +44,10 @@ def create_application():
     application.add_handler(CommandHandler("start", start))
 
     # Основные обработчики callback_data
+    application.add_handler(CommandHandler("menu", menu_command))
+    application.add_handler(CommandHandler("appointment", appointment_command))
+    application.add_handler(CommandHandler("subscribe", subscribe_command))
+    application.add_handler(CommandHandler("unsubscribe", unsubscribe_command_handler))
     application.add_handler(CallbackQueryHandler(handle_checklist_request, pattern='^get_checklist$'))
     application.add_handler(CallbackQueryHandler(handle_memo_request, pattern='^get_memo$'))
     application.add_handler(CallbackQueryHandler(handle_guide_request, pattern='^get_guide$'))
@@ -84,7 +92,7 @@ class TelegramWebhookView(View):
             return HttpResponseForbidden('Invalid secret token')
 
         try:
-            # Создаем и инициализируем application для каждого запроса
+            # Создает и инициализирует application для каждого запроса
             application = create_application()
             body = json.loads(request.body.decode('utf-8'))
             update = Update.de_json(body, application.bot)

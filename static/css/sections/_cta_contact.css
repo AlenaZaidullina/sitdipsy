@@ -4,7 +4,7 @@
   width: 100%;
   height: 35rem; /* Высота */
   margin: 3rem 0;
-  box-shadow:  0 5px 20px rgba(212, 205, 189, 0.4);  /*inset*/
+  box-shadow:  0 5px 20px rgba(212, 205, 189, 0.4);
 }
 
 .background-image {

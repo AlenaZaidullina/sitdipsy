@@ -35,7 +35,7 @@ async def safe_edit_message(query, text, reply_markup=None, parse_mode=None):
             # Если сообщение не изменилось - игнорирует ошибку
             await query.answer()
         else:
-            # Другие ошибки пробрасываем
+            # Другие ошибки пробрасывает
             raise
 
 
@@ -50,7 +50,7 @@ def get_start_keyboard():
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
 
-    # Создаем или получаем клиента
+    # Создает или получает клиента
     client, created = await sync_to_async(Client.objects.get_or_create)(
         telegram_id=user.id,
         defaults={
@@ -275,7 +275,7 @@ async def handle_anxiety_booking(update: Update, context: ContextTypes.DEFAULT_T
         reply_markup=reply_markup
     )
 
-    # Сохраняем запрос в базу
+    # Сохраняет запрос в базу
     user = query.from_user
     client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
 
@@ -312,18 +312,18 @@ async def handle_test_selection(update: Update, context: ContextTypes.DEFAULT_TY
         test_name = "Опросник когнитивных ошибок"
         test_url = "https://psytests.org/cbt/cmqm.html"
 
-    # Сохраняем информацию о выбранном тесте в контексте
+    # Сохраняет информацию о выбранном тесте в контексте
     context.user_data['selected_test'] = query.data
     context.user_data['test_url'] = test_url
     context.user_data['test_name'] = test_name
 
-    # Отправляем сообщение с инструкцией и кнопкой для перехода к тесту
+    # Отправляет сообщение с инструкцией и кнопкой для перехода к тесту
     keyboard = [
         [InlineKeyboardButton(f"🧪 Пройти тест {test_name}", url=test_url)]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
 
-    # Отправляем НОВОЕ сообщение с сохранением reply-клавиатуры
+    # Отправляет НОВОЕ сообщение с сохранением reply-клавиатуры
     await query.message.reply_text(
         f"Отлично! Вы выбрали: {test_name}\n\n"
         "Нажмите на кнопку ниже, чтобы перейти к тесту. "
@@ -332,13 +332,13 @@ async def handle_test_selection(update: Update, context: ContextTypes.DEFAULT_TY
         parse_mode='Markdown'
     )
 
-    # Добавляем кнопку для подтверждения прохождения теста
+    # Добавляет кнопку для подтверждения прохождения теста
     confirm_keyboard = [
         [InlineKeyboardButton("✅ Я прошел тест", callback_data='test_completed')]
     ]
     confirm_reply_markup = InlineKeyboardMarkup(confirm_keyboard)
 
-    # Отправляем с сохранением reply-клавиатуры
+    # Отправляет с сохранением reply-клавиатуры
     await query.message.reply_text(
         "Нажмите кнопку ниже, когда завершите тест:",
         reply_markup=confirm_reply_markup
@@ -349,7 +349,7 @@ async def handle_test_completion(update: Update, context: ContextTypes.DEFAULT_T
     query = update.callback_query
     await query.answer()
 
-    # Отправляем НОВОЕ сообщение с сохранением reply-клавиатуры
+    # Отправляет НОВОЕ сообщение с сохранением reply-клавиатуры
     await query.message.reply_text(
         "Какой у вас получился результат теста?",
         reply_markup=test_result_level_keyboard()
@@ -364,7 +364,7 @@ async def handle_test_result_level(update: Update, context: ContextTypes.DEFAULT
     selected_test = context.user_data.get('selected_test', 'unknown_test')
     result_level = query.data
 
-    # Определяем текст в зависимости от уровня результата
+    # Определяет текст в зависимости от уровня результата
     if result_level == 'result_high':
         message_text = (
             "🔴 Высокий уровень\n\n"
@@ -414,14 +414,14 @@ async def handle_test_result_level(update: Update, context: ContextTypes.DEFAULT
         )
         reply_markup = low_result_keyboard()
 
-    # Отправляем НОВОЕ сообщение с сохранением reply-клавиатуры
+
     await query.message.reply_text(
         message_text,
         reply_markup=reply_markup,
         parse_mode='Markdown'
     )
 
-    # Сохраняем информацию о результате в базе данных
+    # Сохраняет информацию о результате в базе данных
     user = query.from_user
     try:
         client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
@@ -435,7 +435,7 @@ async def send_content_by_type(update: Update, content_type: str, message_obj=No
     """Отправляет контент по типу"""
     try:
         logger.info(f"Attempting to send content of type: {content_type}")
-        # Получаем message_obj правильно
+
         if message_obj is None:
             if hasattr(update, 'message') and update.message:
                 message_obj = update.message
@@ -453,7 +453,7 @@ async def send_content_by_type(update: Update, content_type: str, message_obj=No
         )
 
         if content.file:
-            # Отправляем файл
+            # Отправляет файл
             file_path = content.file.path
             with open(file_path, 'rb') as file:
                 await message_obj.reply_document(document=file, caption=content.name)
@@ -517,7 +517,7 @@ async def handle_about_method_request(update: Update, context: ContextTypes.DEFA
     if hasattr(update, 'callback_query'):
         await update.callback_query.answer()
 
-    # Получаем message_obj правильно (как в handle_guide_request)
+
     if hasattr(update, 'message'):
         message_obj = update.message
     elif hasattr(update, 'callback_query') and hasattr(update.callback_query, 'message'):
@@ -534,7 +534,7 @@ async def handle_about_consultation_request(update: Update, context: ContextType
     if hasattr(update, 'callback_query'):
         await update.callback_query.answer()
 
-    # Получаем message_obj правильно (как в handle_guide_request)
+
     if hasattr(update, 'message'):
         message_obj = update.message
     elif hasattr(update, 'callback_query') and hasattr(update.callback_query, 'message'):
@@ -552,7 +552,7 @@ async def handle_subscribe_materials(update: Update, context: ContextTypes.DEFAU
 
     try:
         user = query.from_user
-        # ИСПРАВЛЕНО: используем get_or_create вместо get
+
         client, created = await sync_to_async(Client.objects.get_or_create)(
             telegram_id=user.id,
             defaults={
@@ -646,7 +646,7 @@ async def handle_subscribe_dates(update: Update, context: ContextTypes.DEFAULT_T
     try:
         client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
 
-        # Создаем или обновляем подписку
+        # Создает или обновляет подписку
         subscription, created = await sync_to_async(NewDatesSubscription.objects.get_or_create)(
             client=client,
             defaults={'is_active': True}
@@ -718,3 +718,70 @@ async def handle_unsubscribe_dates(update: Update, context: ContextTypes.DEFAULT
             error_text,
             reply_markup=consultation_issue_keyboard()
         )
+
+
+async def menu_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обрабатывает команду /menu"""
+    await update.message.reply_text(
+        "📋 **Главное меню**\n\n"
+        "Выберите, что вас интересует:",
+        reply_markup=main_menu_keyboard(),
+        parse_mode='Markdown'
+    )
+
+
+async def appointment_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обрабатывает команду /appointment - запись на консультацию"""
+    await update.message.reply_text(
+        "📅 **Запись на консультацию**\n\n"
+        "Чтобы подобрать для вас подходящий формат, ответьте на один вопрос: что вас беспокоит больше всего?",
+        reply_markup=consultation_issue_keyboard(),
+        parse_mode='Markdown'
+    )
+
+
+async def subscribe_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обрабатывает команду /subscribe"""
+    user = update.effective_user
+
+    client, created = await sync_to_async(Client.objects.get_or_create)(
+        telegram_id=user.id,
+        defaults={
+            'username': user.username,
+            'first_name': user.first_name,
+            'last_name': user.last_name
+        }
+    )
+
+    if client.subscribed_to_newsletter:
+        await update.message.reply_text("✅ Вы уже подписаны на рассылку полезных материалов!")
+    else:
+        client.subscribed_to_newsletter = True
+        await sync_to_async(client.save)()
+        await update.message.reply_text(
+            "✅ **Вы успешно подписались на полезные материалы!**",
+            parse_mode='Markdown'
+        )
+
+
+async def unsubscribe_command_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Обрабатывает команду /unsubscribe (отдельно от существующей)"""
+    user = update.effective_user
+
+    try:
+        client = await sync_to_async(Client.objects.get)(telegram_id=user.id)
+
+        if not client.subscribed_to_newsletter:
+            await update.message.reply_text("ℹ️ Вы и так не подписаны на рассылку полезных материалов.")
+            return
+
+        client.subscribed_to_newsletter = False
+        await sync_to_async(client.save)()
+
+        await update.message.reply_text(
+            "🔕 **Вы отписались от рассылки полезных материалов.**\n\n",
+            parse_mode='Markdown'
+        )
+
+    except Client.DoesNotExist:
+        await update.message.reply_text("Произошла ошибка. Попробуйте позже.")

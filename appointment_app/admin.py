@@ -47,13 +47,13 @@ class AvailableDateAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
 
-        # Отправляем уведомления только для новых доступных дат
+        # Отправляются уведомления только для новых доступных дат
         if obj.is_available and not change:
-            # Запускаем асинхронную задачу
+            # Запускается асинхронная задача
             async def send_notification_async():
                 await NotificationService.send_new_dates_notification([obj.date])
 
-            # Запускаем в отдельном потоке
+            # Запускает в отдельном потоке
             import threading
             def run_async():
                 asyncio.run(send_notification_async())

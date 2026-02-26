@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Appointment(models.Model):
     CONSULTATION_TYPES = [
         ('first', 'Первичная консультация (90 мин)'),
@@ -48,6 +47,7 @@ class AvailableTime(models.Model):
     booked_at = models.DateTimeField('Когда забронировано', null=True, blank=True)
     created_at = models.DateTimeField('Дата создания', auto_now_add=True)
 
+    #  вложенный класс - класс внутри класса
     class Meta:
         verbose_name = 'Доступное время'
         verbose_name_plural = 'Доступное время'

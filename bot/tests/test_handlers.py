@@ -53,7 +53,7 @@ class TestMainMenuHandlers:
         """Тест выбора 'Пройти тесты' в главном меню"""
         from bot.services.bot_handlers import handle_main_menu
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
         mock_callback_query.data = 'take_test'
@@ -91,16 +91,16 @@ class TestContentHandlers:
         """Тест запроса гида"""
         from bot.services.bot_handlers import handle_guide_request
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
         mock_callback_query.answer = AsyncMock()
 
-        # Мокируем ContentBlock
+        # Мокирует ContentBlock
         mock_content = Mock()
         mock_models['ContentBlock'].objects.get.return_value = mock_content
 
-        # Мокируем send_content_by_type
+        # Мокирует send_content_by_type
         with patch('bot.services.bot_handlers.send_content_by_type', new_callable=AsyncMock) as mock_send:
             await handle_guide_request(mock_update, mock_context)
 
@@ -112,12 +112,12 @@ class TestContentHandlers:
         """Тест запроса чек-листа"""
         from bot.services.bot_handlers import handle_checklist_request
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
         mock_callback_query.answer = AsyncMock()
 
-        # Мокируем send_content_by_type
+        # Мокирует send_content_by_type
         with patch('bot.services.bot_handlers.send_content_by_type', new_callable=AsyncMock) as mock_send:
             await handle_checklist_request(mock_update, mock_context)
 
@@ -133,7 +133,7 @@ class TestSubscriptionHandlers:
         """Тест подписки на материалы (новый пользователь)"""
         from bot.services.bot_handlers import handle_subscribe_materials
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
 
@@ -154,7 +154,7 @@ class TestSubscriptionHandlers:
         """Тест отписки от материалов"""
         from bot.services.bot_handlers import handle_unsubscribe_materials
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
 
@@ -179,7 +179,7 @@ class TestTestHandlers:
         """Тест подтверждения прохождения теста (да)"""
         from bot.services.bot_handlers import handle_test_confirmation
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
 
@@ -197,7 +197,7 @@ class TestTestHandlers:
         """Тест выбора теста"""
         from bot.services.bot_handlers import handle_test_selection
 
-        # Мокируем query как атрибут update
+        # Мокирует query как атрибут update
         mock_update = Mock()
         mock_update.callback_query = mock_callback_query
 
