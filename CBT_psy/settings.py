@@ -67,7 +67,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "https://sitdipsy.ru",
     "https://www.sitdipsy.ru",
-    "http://159.194.219.90",
+    "http://159.194.196.36",
 ]
 
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
