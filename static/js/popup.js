@@ -38,7 +38,7 @@ class PopupManager {
                 this.showPopup();
                 this.setShown();
             }
-        }, 30000);
+        }, 180000);
     }
 
     showPopup() {
